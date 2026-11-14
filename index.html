@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minecraft Resource Hub — Premium Shaders, Mods, Textures & More</title>
+<meta name="description" content="Discover, download and share premium Minecraft shaders, mods, texture packs, maps and add-ons. Curated by the community, reviewed by humans." />
+<meta name="theme-color" content="#080B0A" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Minecraft Resource Hub" />
+<meta property="og:title" content="Minecraft Resource Hub — Premium Minecraft Resources" />
+<meta property="og:description" content="Discover, download and share premium Minecraft shaders, mods, texture packs, maps and add-ons." />
+<meta property="og:image" content="/og-cover.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://minecraftresourcehub.web.app/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --bg:#080B0A;
+  --bg-2:#0B100E;
+  --surface:#101715;
+  --surface-2:#151E1B;
+  --surface-3:#1B2622;
+  --border:#22302B;
+  --border-strong:#2E4139;
+
+  --text:#E9F2EE;
+  --text-2:#A6BBB1;
+  --text-3:#6E857B;
+
+  --emerald:#22C55E;
+  --emerald-2:#34D399;
+  --emerald-dark:#0E7A46;
+  --emerald-soft:rgba(34,197,94,.12);
+
+  --amber:#F59E0B;
+  --red:#EF4444;
+  --blue:#3B82F6;
+  --violet:#A855F7;
+
+  --radius:14px;
+  --radius-lg:20px;
+  --radius-sm:10px;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5);
+  --shadow:0 12px 32px -16px rgba(0,0,0,.9);
+  --shadow-lg:0 24px 60px -24px rgba(0,0,0,.95);
+
+  --font-head:'Outfit',system-ui,-apple-system,sans-serif;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+
+  --header-h:68px;
+  --max:1280px;
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font-body);font-size:15px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.15}
+p{margin:0}
+::selection{background:rgba(34,197,94,.3)}
+:focus-visible{outline:2px solid var(--emerald);outline-offset:3px;border-radius:6px}
+.lucide{width:18px;height:18px;stroke-width:2;flex:none}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:99px;border:3px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#3B574C}
+
+/* ============================================================
+   3. HEADER
+   ============================================================ */
+.header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(8,11,10,.82);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{display:flex;align-items:center;gap:24px;height:var(--header-h)}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--font-head);font-weight:700;font-size:16.5px;letter-spacing:-.03em;flex:none}
+.logo-mark{
+  width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(140deg,#34D399,#0E7A46);
+  box-shadow:0 8px 22px -8px rgba(34,197,94,.85), inset 0 1px 0 rgba(255,255,255,.25);
+  color:#03150B;
+}
+.logo-mark .lucide{width:20px;height:20px;stroke-width:2.4}
+.logo small{display:block;font-family:var(--font-body);font-size:10.5px;font-weight:500;color:var(--text-3);letter-spacing:.14em;text-transform:uppercase;line-height:1;margin-top:2px}
+
+.nav{display:flex;align-items:center;gap:2px;margin-left:8px}
+.nav a{
+  padding:8px 13px;border-radius:9px;font-size:14px;font-weight:500;color:var(--text-2);
+  transition:background .16s,color .16s;
+}
+.nav a:hover{color:var(--text);background:var(--surface-2)}
+.nav a.active{color:var(--emerald-2);background:var(--emerald-soft)}
+
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+
+.icon-btn{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);
+  cursor:pointer;transition:.16s;position:relative;
+}
+.icon-btn:hover{color:var(--text);border-color:var(--border-strong);background:var(--surface-3)}
+.icon-btn .dot{position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:99px;background:var(--emerald);box-shadow:0 0 0 2px var(--surface-2)}
+
+/* Avatar menu */
+.avatar{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:13px;font-family:var(--font-head);background:linear-gradient(140deg,#34D399,#0E7A46);color:#03150B;cursor:pointer;border:none;letter-spacing:-.02em}
+.menu{
+  position:absolute;right:24px;top:calc(var(--header-h) - 6px);z-index:80;
+  min-width:230px;background:var(--surface);border:1px solid var(--border-strong);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:7px;display:none;
+}
+.menu.open{display:block}
+.menu-head{padding:10px 12px 12px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.menu-head strong{display:block;font-size:14px}
+.menu-head span{font-size:12.5px;color:var(--text-3);word-break:break-all}
+.menu a,.menu button{
+  display:flex;align-items:center;gap:10px;width:100%;padding:9px 11px;border-radius:8px;
+  font-size:13.5px;font-weight:500;color:var(--text-2);background:none;border:none;cursor:pointer;text-align:left;
+}
+.menu a:hover,.menu button:hover{background:var(--surface-2);color:var(--text)}
+.menu .danger{color:#FCA5A5}
+.menu .sep{height:1px;background:var(--border);margin:6px 0}
+
+/* ============================================================
+   4. BUTTONS / BADGES / FORMS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 17px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;transition:.16s;white-space:nowrap;
+  font-family:var(--font-body);
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(180deg,#2ED573,#16A34A);color:#04160C;box-shadow:0 10px 24px -12px rgba(34,197,94,.95)}
+.btn-primary:hover{filter:brightness(1.07);box-shadow:0 14px 30px -12px rgba(34,197,94,1)}
+.btn-secondary{background:var(--surface-2);color:var(--text);border-color:var(--border-strong)}
+.btn-secondary:hover{background:var(--surface-3);border-color:#3B574C}
+.btn-outline{background:transparent;color:var(--text-2);border-color:var(--border-strong)}
+.btn-outline:hover{color:var(--text);border-color:#3B574C;background:var(--surface-2)}
+.btn-danger{background:rgba(239,68,68,.12);color:#FCA5A5;border-color:rgba(239,68,68,.35)}
+.btn-danger:hover{background:rgba(239,68,68,.2)}
+.btn-sm{padding:7px 13px;font-size:13px;border-radius:9px}
+.btn-lg{padding:13px 24px;font-size:15px;border-radius:12px}
+.btn-block{width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.badge{
+  display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;
+  font-size:11.5px;font-weight:600;letter-spacing:.01em;
+  background:var(--surface-3);color:var(--text-2);border:1px solid var(--border);
+}
+.badge .lucide{width:12px;height:12px}
+.badge-green{background:var(--emerald-soft);color:var(--emerald-2);border-color:rgba(34,197,94,.28)}
+.badge-amber{background:rgba(245,158,11,.12);color:#FCD34D;border-color:rgba(245,158,11,.28)}
+.badge-red{background:rgba(239,68,68,.12);color:#FCA5A5;border-color:rgba(239,68,68,.28)}
+.badge-blue{background:rgba(59,130,246,.12);color:#93C5FD;border-color:rgba(59,130,246,.28)}
+
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--text-2)}
+.field label .req{color:var(--emerald-2)}
+.field .hint{font-size:12px;color:var(--text-3);margin-top:6px}
+.input,.select,.textarea{
+  width:100%;padding:11px 13px;border-radius:var(--radius-sm);
+  background:var(--bg-2);border:1px solid var(--border-strong);color:var(--text);
+  font-family:inherit;font-size:14px;transition:.16s;
+}
+.input::placeholder,.textarea::placeholder{color:#5A7067}
+.input:focus,.select:focus,.textarea:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(34,197,94,.14);background:var(--surface)}
+.textarea{resize:vertical;min-height:110px;line-height:1.65}
+.select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236E857B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.field-error{color:#FCA5A5;font-size:12px;margin-top:5px;display:none}
+.field.invalid .input,.field.invalid .select,.field.invalid .textarea{border-color:var(--red)}
+.field.invalid .field-error{display:block}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{position:relative;overflow:hidden;padding:72px 0 56px;border-bottom:1px solid var(--border)}
+.hero::before{
+  content:'';position:absolute;inset:-40% -10% auto -10%;height:760px;
+  background:
+    radial-gradient(560px 340px at 22% 18%,rgba(34,197,94,.20),transparent 62%),
+    radial-gradient(520px 320px at 78% 8%,rgba(59,130,246,.13),transparent 62%),
+    radial-gradient(700px 400px at 50% 100%,rgba(168,85,247,.07),transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 72%);
+  -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 72%);
+}
+.hero > .container{position:relative;z-index:1}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:99px;
+  background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.26);
+  font-size:12.5px;font-weight:600;color:var(--emerald-2);margin-bottom:22px;
+}
+.hero-eyebrow .pulse{width:7px;height:7px;border-radius:99px;background:var(--emerald);box-shadow:0 0 0 4px rgba(34,197,94,.18);animation:pulse 2.4s infinite;margin-left:4px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+.hero h1{font-size:clamp(34px,5.2vw,60px);font-weight:800;letter-spacing:-.035em;line-height:1.05;max-width:16ch}
+.hero h1 .accent{background:linear-gradient(120deg,#4ADE80,#22C55E 45%,#0EA5E9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin-top:20px;max-width:56ch;font-size:16.5px;color:var(--text-2);line-height:1.65}
+
+.hero-search{display:flex;gap:10px;margin-top:32px;max-width:640px}
+.hero-search .search-box{flex:1;position:relative}
+.hero-search .search-box .lucide{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--text-3);width:19px;height:19px}
+.hero-search input{
+  width:100%;padding:15px 16px 15px 46px;border-radius:12px;font-size:15px;
+  background:rgba(16,23,21,.9);border:1px solid var(--border-strong);color:var(--text);
+  box-shadow:var(--shadow);
+}
+.hero-search input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 4px rgba(34,197,94,.14)}
+
+.hero-stats{display:flex;flex-wrap:wrap;gap:38px;margin-top:46px;padding-top:30px;border-top:1px solid var(--border)}
+.hero-stat b{display:block;font-family:var(--font-head);font-size:26px;font-weight:700;letter-spacing:-.03em}
+.hero-stat span{font-size:12.5px;color:var(--text-3);font-weight:500;text-transform:uppercase;letter-spacing:.09em}
+
+/* ============================================================
+   6. SECTIONS
+   ============================================================ */
+.section{padding:56px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}
+.section-head h2{font-size:clamp(21px,2.6vw,28px);font-weight:700;letter-spacing:-.028em}
+.section-head p{font-size:14px;color:var(--text-3);margin-top:6px}
+.section-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--emerald-2);white-space:nowrap;padding:6px 2px}
+.section-link:hover{gap:9px}
+.section-link .lucide{width:15px;height:15px;transition:.16s}
+
+/* ============================================================
+   7. RESOURCE CARD
+   ============================================================ */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:20px}
+
+.rcard{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;transition:transform .18s cubic-bezier(.2,.7,.3,1),border-color .18s,box-shadow .18s;
+  display:flex;flex-direction:column;position:relative;
+}
+.rcard:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--shadow-lg)}
+.rcard-cover{
+  position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.rcard-cover::after{
+  content:'';position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(circle at 50% 50%,#000,transparent 88%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 88%);
+}
+.rcard-glyph{
+  font-family:var(--font-head);font-size:38px;font-weight:800;letter-spacing:-.05em;
+  color:rgba(255,255,255,.9);text-shadow:0 4px 22px rgba(0,0,0,.6);position:relative;z-index:1;
+  opacity:.92;
+}
+.rcard-cat{
+  position:absolute;left:10px;top:10px;z-index:2;
+  padding:3px 9px;border-radius:7px;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  background:rgba(8,11,10,.78);backdrop-filter:blur(8px);color:var(--text);
+  border:1px solid rgba(255,255,255,.13);
+}
+.rcard-feat{
+  position:absolute;right:10px;top:10px;z-index:2;
+  padding:3px 9px;border-radius:7px;font-size:10.5px;font-weight:700;letter-spacing:.04em;
+  background:rgba(245,158,11,.92);color:#1A1206;display:flex;align-items:center;gap:4px;
+}
+.rcard-feat .lucide{width:11px;height:11px}
+.rcard-body{padding:14px 15px 15px;display:flex;flex-direction:column;gap:5px;flex:1}
+.rcard-body h3{font-size:14.5px;font-weight:600;letter-spacing:-.015em;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.rcard-creator{font-size:12.5px;color:var(--text-3)}
+.rcard-meta{display:flex;align-items:center;gap:13px;margin-top:auto;padding-top:11px;font-size:12px;color:var(--text-3);font-weight:500}
+.rcard-meta span{display:inline-flex;align-items:center;gap:4.5px}
+.rcard-meta .lucide{width:13px;height:13px;stroke-width:2.1}
+.rcard-ver{margin-left:auto;padding:2px 7px;border-radius:6px;background:var(--surface-3);border:1px solid var(--border);font-size:11px;color:var(--text-2)}
+
+/* ============================================================
+   8. CATEGORY GRID
+   ============================================================ */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px}
+.cat-card{
+  display:flex;align-items:center;gap:12px;padding:15px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);transition:.16s;
+}
+.cat-card:hover{background:var(--surface-2);border-color:var(--border-strong);transform:translateY(-2px)}
+.cat-icon{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);
+}
+.cat-card b{display:block;font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.cat-card span{font-size:11.5px;color:var(--text-3)}
+
+/* ============================================================
+   9. LIBRARY LAYOUT
+   ============================================================ */
+.page-head{padding:38px 0 26px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(16,23,21,.7),transparent)}
+.page-head h1{font-size:clamp(25px,3.4vw,34px);font-weight:700;letter-spacing:-.032em}
+.page-head p{color:var(--text-2);margin-top:8px;max-width:70ch;font-size:14.5px}
+.crumbs{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-3);margin-bottom:14px;flex-wrap:wrap}
+.crumbs a:hover{color:var(--emerald-2)}
+.crumbs .lucide{width:13px;height:13px}
+
+.library{display:grid;grid-template-columns:250px 1fr;gap:32px;padding:32px 0 72px;align-items:start}
+@media(max-width:900px){.library{grid-template-columns:1fr;gap:20px}}
+
+.filters{position:sticky;top:calc(var(--header-h) + 20px);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+@media(max-width:900px){.filters{position:static}}
+.filter-group{margin-bottom:20px}
+.filter-group:last-child{margin-bottom:0}
+.filter-group h4{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:10px}
+.filter-list{display:flex;flex-direction:column;gap:1px}
+.filter-item{
+  display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;
+  font-size:13.5px;color:var(--text-2);cursor:pointer;transition:.14s;background:none;border:none;text-align:left;width:100%;
+}
+.filter-item:hover{background:var(--surface-2);color:var(--text)}
+.filter-item.active{background:var(--emerald-soft);color:var(--emerald-2);font-weight:600}
+.filter-item .count{margin-left:auto;font-size:11.5px;color:var(--text-3);font-weight:500}
+.filter-item.active .count{color:var(--emerald-2)}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.toolbar .result-count{font-size:13.5px;color:var(--text-3)}
+.toolbar .spacer{flex:1}
+.toolbar .input{max-width:250px;padding:9px 12px;font-size:13.5px}
+.toolbar .select{max-width:170px;padding:9px 34px 9px 12px;font-size:13.5px}
+
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:40px}
+.pagination button{
+  min-width:36px;height:36px;padding:0 11px;border-radius:9px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text-2);font-size:13.5px;font-weight:600;cursor:pointer;transition:.14s;
+}
+.pagination button:hover:not(:disabled){background:var(--surface-2);color:var(--text);border-color:var(--border-strong)}
+.pagination button.active{background:var(--emerald);color:#04160C;border-color:var(--emerald)}
+.pagination button:disabled{opacity:.35;cursor:not-allowed}
+
+/* Empty & skeleton */
+.empty{text-align:center;padding:70px 20px;border:1px dashed var(--border-strong);border-radius:var(--radius-lg);background:rgba(16,23,21,.4)}
+.empty .lucide{width:40px;height:40px;color:var(--text-3);margin-bottom:14px;stroke-width:1.5}
+.empty h3{font-size:18px;margin-bottom:7px}
+.empty p{color:var(--text-3);font-size:14px;max-width:42ch;margin:0 auto 20px}
+.skel{background:linear-gradient(90deg,var(--surface) 25%,var(--surface-2) 50%,var(--surface) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:var(--radius)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ============================================================
+   10. RESOURCE DETAIL
+   ============================================================ */
+.detail-hero{position:relative;height:230px;overflow:hidden;border-bottom:1px solid var(--border)}
+.detail-hero img{width:100%;height:100%;object-fit:cover}
+.detail-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,10,.35),var(--bg) 96%)}
+
+.detail-wrap{display:grid;grid-template-columns:1fr 336px;gap:36px;padding:0 0 72px;align-items:start;margin-top:-64px;position:relative;z-index:2}
+@media(max-width:980px){.detail-wrap{grid-template-columns:1fr;margin-top:-40px}}
+
+.detail-main{min-width:0}
+.detail-title-row{display:flex;gap:18px;align-items:flex-start;margin-bottom:22px}
+.detail-logo{
+  width:88px;height:88px;border-radius:18px;flex:none;display:grid;place-items:center;
+  font-family:var(--font-head);font-size:30px;font-weight:800;color:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.13);box-shadow:var(--shadow-lg);
+}
+.detail-title-row h1{font-size:clamp(24px,3.4vw,34px);letter-spacing:-.032em;margin-bottom:7px}
+.detail-tagline{color:var(--text-2);font-size:14.5px;margin-bottom:11px}
+.detail-badges{display:flex;flex-wrap:wrap;gap:7px}
+
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.panel h3{font-size:16px;margin-bottom:14px;letter-spacing:-.02em}
+.prose{font-size:14.5px;color:var(--text-2);line-height:1.75}
+.prose p{margin-bottom:13px}
+.prose p:last-child{margin-bottom:0}
+.prose ul{margin:0 0 13px;padding-left:20px}
+.prose li{margin-bottom:6px}
+.prose code{background:var(--surface-3);padding:2px 6px;border-radius:5px;font-size:13px;color:var(--emerald-2);font-family:ui-monospace,monospace}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-bottom:18px}
+.gallery div{aspect-ratio:16/10;border-radius:11px;border:1px solid var(--border);overflow:hidden;cursor:zoom-in;position:relative}
+.gallery div::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.05);opacity:0;transition:.16s}
+.gallery div:hover::after{opacity:1}
+
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:22px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  padding:11px 16px;border:none;background:none;color:var(--text-3);font-size:13.5px;font-weight:600;
+  cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:.14s;
+}
+.tab:hover{color:var(--text-2)}
+.tab.active{color:var(--emerald-2);border-bottom-color:var(--emerald)}
+
+.side-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:sticky;top:calc(var(--header-h) + 20px)}
+@media(max-width:980px){.side-card{position:static}}
+.meta-list{display:flex;flex-direction:column;gap:0;margin-bottom:16px}
+.meta-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
+.meta-row:last-child{border-bottom:none}
+.meta-row dt{color:var(--text-3);font-weight:500}
+.meta-row dd{margin:0;font-weight:600;text-align:right;color:var(--text-2);word-break:break-word}
+
+.creator-mini{display:flex;align-items:center;gap:11px;padding:13px;border-radius:11px;background:var(--surface-2);border:1px solid var(--border);transition:.16s}
+.creator-mini:hover{background:var(--surface-3);border-color:var(--border-strong)}
+.creator-mini .av{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-family:var(--font-head);font-weight:700;font-size:15px;background:linear-gradient(140deg,#34D399,#0E7A46);color:#03150B;flex:none}
+.creator-mini b{display:block;font-size:13.5px}
+.creator-mini span{font-size:11.5px;color:var(--text-3)}
+
+/* Comments */
+.comment{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+.comment:last-child{border-bottom:none}
+.comment .av{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--surface-3);color:var(--text-2);flex:none;font-family:var(--font-head)}
+.comment-head{display:flex;align-items:center;gap:9px;margin-bottom:4px;flex-wrap:wrap}
+.comment-head b{font-size:13.5px}
+.comment-head time{font-size:11.5px;color:var(--text-3)}
+.comment-body{font-size:14px;color:var(--text-2);line-height:1.65}
+.stars{display:inline-flex;gap:1px;color:var(--amber)}
+.stars .lucide{width:13px;height:13px;fill:currentColor}
+
+/* ============================================================
+   11. CREATOR CARDS
+   ============================================================ */
+.creator-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.creator-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center;transition:.18s}
+.creator-card:hover{transform:translateY(-3px);border-color:var(--border-strong);box-shadow:var(--shadow)}
+.creator-card .av{width:62px;height:62px;border-radius:16px;margin:0 auto 13px;display:grid;place-items:center;font-family:var(--font-head);font-size:22px;font-weight:800;color:#03150B;background:linear-gradient(140deg,#34D399,#0E7A46);box-shadow:0 12px 28px -14px rgba(34,197,94,.9)}
+.creator-card h3{font-size:15px;margin-bottom:4px}
+.creator-card p{font-size:12.5px;color:var(--text-3);margin-bottom:13px;min-height:34px}
+.creator-card .stats{display:flex;justify-content:center;gap:20px;padding-top:13px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3)}
+.creator-card .stats b{display:block;color:var(--text);font-size:14px;font-family:var(--font-head)}
+
+/* ============================================================
+   12. FORMS PAGE / DASHBOARD
+   ============================================================ */
+.form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:18px}
+.form-section h3{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.form-section .sub{font-size:13px;color:var(--text-3);margin-bottom:20px}
+.form-section h3 .lucide{color:var(--emerald-2);width:17px;height:17px}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:26px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:17px}
+.stat-card .lbl{font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--text-3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.stat-card .lbl .lucide{width:13px;height:13px}
+.stat-card b{font-family:var(--font-head);font-size:26px;font-weight:700;letter-spacing:-.03em;display:block}
+.stat-card small{font-size:12px;color:var(--text-3)}
+
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.data-table th{text-align:left;padding:10px 12px;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);border-bottom:1px solid var(--border);font-weight:700}
+.data-table td{padding:13px 12px;border-bottom:1px solid var(--border);color:var(--text-2)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:rgba(255,255,255,.017)}
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.table-wrap .data-table th{background:var(--surface-2)}
+.table-wrap .data-table th:first-child,.table-wrap .data-table td:first-child{padding-left:18px}
+.table-wrap .data-table th:last-child,.table-wrap .data-table td:last-child{padding-right:18px}
+
+/* ============================================================
+   13. AUTH PAGE
+   ============================================================ */
+.auth-wrap{min-height:calc(100vh - var(--header-h));display:grid;place-items:center;padding:48px 24px;position:relative}
+.auth-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 400px at 50% 0%,rgba(34,197,94,.11),transparent 70%);pointer-events:none}
+.auth-card{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);padding:34px;box-shadow:var(--shadow-lg);position:relative}
+.auth-card h1{font-size:24px;margin-bottom:6px;letter-spacing:-.03em}
+.auth-card .sub{color:var(--text-3);font-size:14px;margin-bottom:26px}
+.auth-tabs{display:flex;background:var(--bg-2);border:1px solid var(--border);border-radius:11px;padding:4px;margin-bottom:24px}
+.auth-tabs button{flex:1;padding:9px;border:none;background:none;color:var(--text-3);font-size:13.5px;font-weight:600;border-radius:8px;cursor:pointer;transition:.16s}
+.auth-tabs button.active{background:var(--surface-3);color:var(--text);box-shadow:var(--shadow-sm)}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-3);font-size:12px}
+.divider::before,.divider::after{content:'';height:1px;flex:1;background:var(--border)}
+
+/* ============================================================
+   14. FOOTER
+   ============================================================ */
+.footer{border-top:1px solid var(--border);background:var(--bg-2);padding:56px 0 30px;margin-top:auto}
+.footer-grid{display:grid;grid-template-columns:1.7fr repeat(3,1fr);gap:40px;margin-bottom:40px}
+@media(max-width:820px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+.footer h4{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--text-3);margin-bottom:15px;font-weight:700}
+.footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.footer ul a{font-size:13.5px;color:var(--text-2);transition:.14s}
+.footer ul a:hover{color:var(--emerald-2)}
+.footer-brand p{font-size:13.5px;color:var(--text-3);margin-top:14px;max-width:34ch;line-height:1.7}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:26px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-3);flex-wrap:wrap}
+.footer-bottom .disclaimer{max-width:60ch;line-height:1.6}
+.socials{display:flex;gap:8px}
+.socials a{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--border);color:var(--text-3);transition:.14s}
+.socials a:hover{color:var(--emerald-2);border-color:var(--border-strong)}
+
+/* ============================================================
+   15. MODAL / TOAST / OVERLAYS
+   ============================================================ */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(4,7,6,.78);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:80px 20px 40px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{width:100%;max-width:520px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:26px}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+.modal-head h2{font-size:19px;letter-spacing:-.025em}
+.modal-head p{font-size:13px;color:var(--text-3);margin-top:4px}
+
+.search-overlay{position:fixed;inset:0;z-index:110;background:rgba(4,7,6,.86);backdrop-filter:blur(10px);display:none;padding:80px 20px 40px;overflow-y:auto}
+.search-overlay.open{display:block}
+.search-panel{max-width:680px;margin:0 auto}
+.search-field{position:relative;margin-bottom:18px}
+.search-field .lucide{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text-3);width:20px;height:20px}
+.search-field input{width:100%;padding:17px 18px 17px 50px;border-radius:14px;font-size:16px;background:var(--surface);border:1px solid var(--border-strong);color:var(--text)}
+.search-field input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 4px rgba(34,197,94,.14)}
+.search-results{display:flex;flex-direction:column;gap:6px}
+.search-item{display:flex;align-items:center;gap:13px;padding:11px;border-radius:11px;border:1px solid transparent;transition:.14s}
+.search-item:hover{background:var(--surface);border-color:var(--border)}
+.search-item .thumb{width:46px;height:46px;border-radius:9px;flex:none;display:grid;place-items:center;font-family:var(--font-head);font-weight:800;font-size:15px;color:rgba(255,255,255,.9)}
+.search-item b{display:block;font-size:14px}
+.search-item span{font-size:12px;color:var(--text-3)}
+
+.toast-stack{position:fixed;bottom:24px;right:24px;z-index:200;display:flex;flex-direction:column;gap:10px;max-width:360px}
+.toast{
+  display:flex;align-items:flex-start;gap:11px;padding:14px 16px;border-radius:12px;
+  background:var(--surface-2);border:1px solid var(--border-strong);box-shadow:var(--shadow-lg);
+  font-size:13.5px;animation:toastIn .25s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.toast.success{border-color:rgba(34,197,94,.4)}
+.toast.success .lucide{color:var(--emerald-2)}
+.toast.error{border-color:rgba(239,68,68,.4)}
+.toast.error .lucide{color:#FCA5A5}
+
+.maintenance{min-height:100vh;display:grid;place-items:center;text-align:center;padding:40px}
+.maintenance .lucide{width:52px;height:52px;color:var(--amber);margin-bottom:20px}
+
+/* ============================================================
+   16. RESPONSIVE / UTIL
+   ============================================================ */
+.mobile-only{display:none}
+@media(max-width:1020px){
+  .nav{display:none}
+  .mobile-only{display:grid}
+}
+@media(max-width:640px){
+  .container{padding:0 16px}
+  .hero{padding:48px 0 40px}
+  .hero-search{flex-direction:column}
+  .hero-stats{gap:24px;margin-top:32px}
+  .hero-stat b{font-size:22px}
+  .section{padding:40px 0}
+  .rgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:13px}
+  .detail-title-row{flex-direction:column;gap:14px}
+  .detail-logo{width:68px;height:68px;font-size:24px}
+  .toast-stack{left:16px;right:16px;bottom:16px;max-width:none}
+}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<a href="#app" class="sr-only">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#/" class="logo" aria-label="Minecraft Resource Hub home">
+      <span class="logo-mark"><i data-lucide="box"></i></span>
+      <span>Resource Hub<small>Minecraft</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#/library">Browse</a>
+      <a href="#/library?category=shaders">Shaders</a>
+      <a href="#/library?category=mods">Mods</a>
+      <a href="#/library?category=texture-packs">Textures</a>
+      <a href="#/creators">Creators</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="openSearch" aria-label="Search resources"><i data-lucide="search"></i></button>
+      <button class="icon-btn" id="openNotifications" aria-label="Notifications"><i data-lucide="bell"></i><span class="dot hidden" id="notifDot"></span></button>
+      <a href="#/submit" class="btn btn-primary btn-sm" id="submitBtn" style="display:none"><i data-lucide="upload"></i> Submit</a>
+      <div id="authArea"></div>
+    </div>
+  </div>
+</header>
+<div class="menu" id="userMenu"></div>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="search-field">
+      <i data-lucide="search"></i>
+      <input type="text" id="searchInput" placeholder="Search resources, creators, tags…" autocomplete="off" />
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL ROOT ============ -->
+<div class="overlay" id="modalRoot"><div class="modal" id="modalContent"></div></div>
+
+<!-- ============ MAIN ============ -->
+<main id="app"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#/" class="logo"><span class="logo-mark"><i data-lucide="box"></i></span><span>Resource Hub<small>Minecraft</small></span></a>
+        <p>The curated marketplace for Minecraft shaders, mods, textures, maps and add-ons. Every resource is reviewed by a human before it goes live.</p>
+        <div class="socials" style="margin-top:18px">
+          <a href="#" aria-label="Discord"><i data-lucide="message-circle"></i></a>
+          <a href="#" aria-label="X"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+          <a href="#" aria-label="GitHub"><i data-lucide="github"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Browse</h4>
+        <ul>
+          <li><a href="#/library?category=shaders">Shaders</a></li>
+          <li><a href="#/library?category=mods">Mods</a></li>
+          <li><a href="#/library?category=texture-packs">Texture Packs</a></li>
+          <li><a href="#/library?category=maps">Maps</a></li>
+          <li><a href="#/library?category=addons">Add-ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#/creators">Creators</a></li>
+          <li><a href="#/submit">Submit Resource</a></li>
+          <li><a href="#/dashboard">Creator Dashboard</a></li>
+          <li><a href="#/collections">Collections</a></li>
+          <li><a href="#/notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#/legal/terms">Terms of Service</a></li>
+          <li><a href="#/legal/privacy">Privacy Policy</a></li>
+          <li><a href="#/legal/dmca">Copyright / DMCA</a></li>
+          <li><a href="#/legal/guidelines">Submission Guidelines</a></li>
+          <li><a href="#/legal/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Minecraft Resource Hub. All rights reserved.</span>
+      <span class="disclaimer">Not affiliated with, endorsed by, or associated with Mojang Studios or Microsoft. Minecraft is a trademark of Mojang Synergies AB.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<script type="module">
+/* ================================================================
+   MINECRAFT RESOURCE HUB — PUBLIC APPLICATION
+   ----------------------------------------------------------------
+   Backend: Firebase Realtime Database (no Firebase Auth)
+   Auth: Local browser accounts, synced content via RTDB
+   ================================================================ */
+
+/* ================================================================
+   1. CONFIGURATION
+   ================================================================ */
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyAAljBnj9KausCDBvN0mtBJq8pfH77ZbCs",
+  authDomain:        "minecraft-hub-d92e1.firebaseapp.com",
+  databaseURL:       "https://minecraft-hub-d92e1-default-rtdb.firebaseio.com",
+  projectId:         "minecraft-hub-d92e1",
+  storageBucket:     "minecraft-hub-d92e1.firebasestorage.app",
+  messagingSenderId: "1064241386794",
+  appId:             "1:1064241386794:web:fbec2fbc38563a4dfe3a53",
+  measurementId:     "G-QB8BEM4LWE"
+};
+
+const SITE = {
+  name: "Minecraft Resource Hub",
+  url:  "https://minecraftresourcehub.web.app",
+  adminUrl: "https://minecraftresourcehub-admin.web.app",
+  pageSize: 12
+};
+
+const IS_DEMO = !FIREBASE_CONFIG.apiKey || FIREBASE_CONFIG.apiKey.trim() === "";
+
+/* ================================================================
+   2. UTILITIES
+   ================================================================ */
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+function esc(str = "") {
+  return String(str).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function fmtNum(n = 0) {
+  n = Number(n) || 0;
+  if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, "") + "M";
+  if (n >= 1e3) return (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, "") + "K";
+  return String(n);
+}
+function fmtDate(ts) {
+  if (!ts) return "—";
+  const d = new Date(ts);
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+}
+function timeAgo(ts) {
+  if (!ts) return "—";
+  const s = Math.floor((Date.now() - Number(ts)) / 1000);
+  if (s < 60) return "just now";
+  const m = Math.floor(s / 60); if (m < 60) return m + "m ago";
+  const h = Math.floor(m / 60); if (h < 24) return h + "h ago";
+  const d = Math.floor(h / 24); if (d < 30) return d + "d ago";
+  const mo = Math.floor(d / 30); if (mo < 12) return mo + "mo ago";
+  return Math.floor(mo / 12) + "y ago";
+}
+function hashStr(str = "") {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+function coverStyle(seed = "") {
+  const h = hashStr(seed) % 360;
+  return `background:linear-gradient(140deg,hsl(${h} 46% 16%),hsl(${(h + 42) % 360} 58% 29%))`;
+}
+function initials(name = "") {
+  return name.trim().split(/\s+/).slice(0, 2).map(w => w[0] || "").join("").toUpperCase() || "?";
+}
+function objToArr(obj) {
+  return obj ? Object.entries(obj).map(([id, v]) => ({ id, ...(typeof v === "object" ? v : { value: v }) })) : [];
+}
+function toast(message, type = "success") {
+  const stack = $("#toastStack");
+  const el = document.createElement("div");
+  el.className = "toast " + type;
+  el.innerHTML = `<i data-lucide="${type === "error" ? "alert-circle" : "check-circle"}"></i><span>${esc(message)}</span>`;
+  stack.appendChild(el);
+  refreshIcons();
+  setTimeout(() => { el.style.opacity = "0"; el.style.transform = "translateY(8px)"; setTimeout(() => el.remove(), 250); }, 3800);
+}
+function openModal(html) {
+  $("#modalContent").innerHTML = html;
+  $("#modalRoot").classList.add("open");
+  document.body.style.overflow = "hidden";
+  refreshIcons();
+}
+function closeModal() {
+  $("#modalRoot").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function go(path) { location.hash = path; }
+function stars(rating = 0) {
+  let out = "";
+  for (let i = 1; i <= 5; i++) out += `<i data-lucide="star" style="fill:${i <= Math.round(rating) ? "currentColor" : "none"};opacity:${i <= Math.round(rating) ? 1 : .32}"></i>`;
+  return `<span class="stars">${out}</span>`;
+}
+function refreshIcons() { if (window.lucide) lucide.createIcons(); }
+
+/* ================================================================
+   3. BACKEND — Firebase Realtime Database only (no Auth)
+   ================================================================ */
+const fb = { app: null, db: null, mod: {} };
+
+async function initBackend() {
+  if (IS_DEMO) {
+    console.info("[MRH] Running in DEMO mode.");
+    return;
+  }
+  try {
+    const V = "https://www.gstatic.com/firebasejs/10.12.2/";
+    const [a, db] = await Promise.all([
+      import(V + "firebase-app.js"),
+      import(V + "firebase-database.js")
+    ]);
+    fb.mod = { ...a, ...db };
+    fb.app = a.initializeApp(FIREBASE_CONFIG);
+    fb.db  = db.getDatabase(fb.app);
+    console.info("[MRH] Firebase RTDB connected:", FIREBASE_CONFIG.projectId);
+  } catch (err) {
+    console.error("[MRH] Firebase init failed, falling back to demo mode.", err);
+    toast("Backend unavailable — running in offline demo mode.", "error");
+  }
+}
+const isLive = () => !!fb.db;
+
+/* ---------- RTDB helpers ---------- */
+async function rdbRead(path) {
+  const { ref, get } = fb.mod;
+  const snap = await get(ref(fb.db, path));
+  return snap.exists() ? snap.val() : null;
+}
+async function rdbSet(path, value) {
+  const { ref, set } = fb.mod;
+  await set(ref(fb.db, path), value);
+}
+async function rdbUpdate(path, value) {
+  const { ref, update } = fb.mod;
+  await update(ref(fb.db, path), value);
+}
+async function rdbPush(path, value) {
+  const { ref, push, set } = fb.mod;
+  const r = push(ref(fb.db, path));
+  await set(r, value);
+  return r.key;
+}
+async function rdbRemove(path) {
+  const { ref, remove } = fb.mod;
+  await remove(ref(fb.db, path));
+}
+async function rdbIncrement(path, field, by = 1) {
+  const { ref, runTransaction } = fb.mod;
+  try {
+    const result = await runTransaction(ref(fb.db, path), (current) => {
+      if (current && typeof current === "object") {
+        current[field] = (current[field] || 0) + by;
+        return current;
+      }
+      return { [field]: Math.max(0, by) };
+    });
+    return result.snapshot.val();
+  } catch (err) {
+    console.warn("[MRH] Increment failed:", err);
+    return null;
+  }
+}
+
+/* ---------- Demo store ---------- */
+let DB = null;
+function loadDB() {
+  if (DB) return DB;
+  try {
+    const raw = localStorage.getItem("mrh:db:v1");
+    if (raw) { DB = JSON.parse(raw); return DB; }
+  } catch (_) {}
+  DB = {
+    resources: seedResources(),
+    categories: seedCategories(),
+    creators: seedCreators(),
+    likes: {},
+    favorites: {},
+    comments: {},
+    collections: {},
+    submissions: [],
+    notifications: {},
+    reports: [],
+    users: {}
+  };
+  saveDB();
+  return DB;
+}
+function saveDB() { try { localStorage.setItem("mrh:db:v1", JSON.stringify(DB)); } catch (_) {} }
+
+/* ================================================================
+   4. DEMO SEED DATA
+   ================================================================ */
+function seedCategories() {
+  return [
+    { id: "shaders",        name: "Shaders",           icon: "sun",        color: "#F59E0B" },
+    { id: "mods",           name: "Mods",              icon: "puzzle",     color: "#3B82F6" },
+    { id: "texture-packs",  name: "Texture Packs",     icon: "image",      color: "#A855F7" },
+    { id: "resource-packs", name: "Resource Packs",    icon: "package",    color: "#06B6D4" },
+    { id: "addons",         name: "Add-ons",           icon: "plus-square",color: "#22C55E" },
+    { id: "maps",           name: "Maps",              icon: "map",        color: "#EF4444" },
+    { id: "skins",          name: "Skins",             icon: "user",       color: "#EC4899" },
+    { id: "behavior-packs", name: "Behavior Packs",    icon: "cpu",        color: "#8B5CF6" },
+    { id: "worlds",         name: "Worlds",            icon: "globe",      color: "#14B8A6" },
+    { id: "tools",          name: "Minecraft Tools",   icon: "wrench",     color: "#F97316" },
+    { id: "ui-packs",       name: "UI Packs",          icon: "layout",     color: "#0EA5E9" },
+    { id: "other",          name: "Other Resources",   icon: "box",        color: "#64748B" }
+  ];
+}
+function seedCreators() {
+  return [
+    { id: "c1", name: "Aurora Studio",  handle: "@aurorastudio", bio: "Atmospheric shader craftsmanship since 2016.", verified: true,  resources: 12, downloads: 4820000, likes: 96000 },
+    { id: "c2", name: "PixelForge",     handle: "@pixelforge",   bio: "High-fidelity texture packs with a vanilla soul.", verified: true,  resources: 9,  downloads: 2140000, likes: 51000 },
+    { id: "c3", name: "VoxelLabs",      handle: "@voxellabs",    bio: "Technical mods, performance tooling, clean code.", verified: true,  resources: 14, downloads: 3890000, likes: 74000 },
+    { id: "c4", name: "NovaShaders",    handle: "@novashaders",  bio: "Realtime lighting experiments.", verified: false, resources: 5,  downloads: 890000,  likes: 21000 },
+    { id: "c5", name: "CraftBench",     handle: "@craftbench",   bio: "Maps and adventure worlds built to be explored.", verified: false, resources: 7,  downloads: 640000,  likes: 18000 },
+    { id: "c6", name: "EnderWorks",     handle: "@enderworks",   bio: "Add-ons, behavior packs and oddities.", verified: false, resources: 11, downloads: 1120000, likes: 33000 }
+  ];
+}
+function seedResources() {
+  const day = 86400000;
+  const now = Date.now();
+  const rows = [
+    ["Complementary Reimagined","shaders","both","A balanced, cinematic shader pack tuned for playable framerates without sacrificing atmosphere.",["1.21","1.20.6","1.20.4","1.20.1"],"r5.2.1","4.2 MB",["realistic","performance","lighting"],1240000,18400,"c1",true,3],
+    ["BSL Shaders","shaders","java","The classic vibrant shader — soft bloom, rich colour grading and volumetric light.",["1.21","1.20.6","1.20.1"],"v8.4","2.8 MB",["vibrant","volumetric","classic"],2310000,32100,"c4",true,9],
+    ["Sodium","mods","java","A modern rendering engine replacement that dramatically improves framerate and reduces stutter.",["1.21.1","1.20.6","1.20.1","1.19.4"],"0.6.3","1.1 MB",["performance","fabric","rendering"],3420000,41200,"c3",true,1],
+    ["Create","mods","java","Aesthetic technology: rotational power, contraptions and mechanical automation.",["1.21","1.20.6","1.20.1"],"6.0.4","38 MB",["technology","automation","forge"],1890000,28700,"c3",true,12],
+    ["Iris Shaders","mods","java","Shader loader for Fabric and NeoForge with Sodium integration and instant reload.",["1.21.1","1.20.6","1.20.1"],"1.8.0","3.4 MB",["shaders","fabric","performance"],1520000,22300,"c3",false,5],
+    ["Faithful 32x","texture-packs","both","Vanilla art faithfully doubled in resolution — no style drift, just clarity.",["1.21","1.20.6","1.20.4"],"1.21.4","12 MB",["vanilla","32x","faithful"],980000,15400,"c2",false,18],
+    ["Stay True","texture-packs","java","A gentle 16x refresh that keeps the original Minecraft character intact.",["1.21","1.20.6","1.20.1"],"1.20.9","1.6 MB",["vanilla","16x","subtle"],640000,9800,"c2",false,22],
+    ["Better Vanilla Building","resource-packs","both","Connected textures, better lanterns, fences and building blocks for builders.",["1.21","1.20.6","1.20.1"],"2.4","9.1 MB",["building","connected","decoration"],510000,7600,"c2",false,7],
+    ["Biomes O' Plenty","mods","java","Over 90 new biomes with custom trees, foliage and world generation layers.",["1.21","1.20.6","1.20.1"],"19.0.0","26 MB",["worldgen","biomes","exploration"],1420000,19800,"c3",false,15],
+    ["Skyblock Origins","maps","both","A hand-built skyblock campaign with quests, custom loot and seven distinct islands.",["1.21","1.20.6"],"3.1","48 MB",["adventure","skyblock","quests"],320000,5400,"c5",true,4],
+    ["Lucky Blocks Ultimate","addons","bedrock","Fifty-plus lucky block variants with configurable drop tables and effects.",["1.21","1.20.6","1.20.4"],"4.0.2","7.8 MB",["lucky","minigame","bedrock"],410000,6100,"c6",false,11],
+    ["Dream Skins Collection","skins","both","A curated pack of 40 high-detail 64x64 skins with consistent shading.",["1.21","1.20.6"],"1.3","0.4 MB",["skins","collection","character"],180000,3200,"c6",false,30],
+    ["Fabric API","mods","java","Core library required by most Fabric mods. Lightweight and frequently updated.",["1.21.1","1.20.6","1.20.1","1.19.4"],"0.102.0","1.6 MB",["library","fabric","required"],2980000,24800,"c3",false,2],
+    ["Terralith","mods","java","Overworld generation overhaul with 100+ biomes and dramatic terrain using vanilla blocks.",["1.21","1.20.6","1.20.1"],"2.5.4","11 MB",["worldgen","terrain","datapack"],870000,13200,"c3",false,20],
+    ["Vanilla Tweaks","tools","both","A configurable collection of micro-resource-packs — pick exactly what you want.",["1.21","1.20.6","1.20.4","1.20.1"],"web","—",["utility","modular","vanilla"],1450000,17300,"c5",false,45],
+    ["Modern UI","ui-packs","both","A refined interface pack: cleaner inventory, readable fonts and subtle glass panels.",["1.21","1.20.6"],"2.1.0","3.2 MB",["interface","hud","clean"],260000,4100,"c2",false,8]
+  ];
+  return rows.map((r, i) => {
+    const [name, categoryId, edition, tagline, mcVersions, version, fileSize, tags, downloads, likes, creatorId, featured, daysAgo] = r;
+    const creator = seedCreators().find(c => c.id === creatorId);
+    return {
+      id: "r" + (i + 1),
+      slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      name, categoryId, edition, tagline,
+      description:
+        `<p>${tagline}</p>` +
+        `<p>${name} is built for players who want a deliberate upgrade rather than a total overhaul. Every element has been tuned by hand and tested across multiple Minecraft versions before release.</p>` +
+        `<ul><li>Carefully balanced visuals and performance</li><li>Actively maintained with regular compatibility updates</li><li>Clear installation instructions and changelog</li><li>Community-reviewed and manually verified</li></ul>` +
+        `<p>If you run into compatibility issues, use the report button on this page — the creator is notified directly.</p>`,
+      install:
+        `<p>1. Install the correct loader for your edition (Fabric, Forge, NeoForge or the shader loader).</p>` +
+        `<p>2. Download the resource archive from the link above.</p>` +
+        `<p>3. Drop the archive into your <code>mods</code> or <code>resourcepacks</code> folder — do not extract it.</p>` +
+        `<p>4. Launch Minecraft and enable it in the relevant menu.</p>`,
+      mcVersions, version, fileSize, tags,
+      downloads, likes, views: Math.round(downloads * 2.4),
+      creatorId, creatorName: creator.name, featured,
+      license: "Creative Commons BY-NC 4.0",
+      status: "published",
+      downloadUrl: "https://example.com/download/" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      thumbnailUrl: "", bannerUrl: "",
+      screenshots: [], videoUrl: "",
+      changelog: [
+        { version, date: now - daysAgo * day, notes: "Compatibility update and minor visual fixes." },
+        { version: "previous", date: now - (daysAgo + 30) * day, notes: "Initial public release." }
+      ],
+      createdAt: now - daysAgo * day,
+      updatedAt: now - Math.max(1, Math.floor(daysAgo / 3)) * day
+    };
+  });
+}
+
+/* ================================================================
+   API — unified data access (RTDB or demo)
+   ================================================================ */
+const api = {
+  async categories() {
+    if (isLive()) {
+      try { const list = objToArr(await rdbRead("categories")); if (list.length) return list; } catch (_) {}
+    }
+    return loadDB().categories;
+  },
+
+  async resources() {
+    if (isLive()) {
+      try {
+        const list = objToArr(await rdbRead("resources"));
+        return list.filter(r => r.status === "published" || !r.status);
+      } catch (err) { console.warn(err); return []; }
+    }
+    return loadDB().resources.filter(r => r.status === "published");
+  },
+
+  async resource(slug) {
+    if (isLive()) {
+      try {
+        const all = objToArr(await rdbRead("resources"));
+        return all.find(r => r.slug === slug || r.id === slug) || null;
+      } catch (_) { return null; }
+    }
+    return loadDB().resources.find(r => r.slug === slug || r.id === slug) || null;
+  },
+
+  async creators() {
+    if (isLive()) {
+      try { const l = objToArr(await rdbRead("creators")); if (l.length) return l; } catch (_) {}
+    }
+    return loadDB().creators;
+  },
+
+  async creator(id) {
+    if (isLive()) {
+      try {
+        const v = await rdbRead(`creators/${id}`);
+        return v ? { id, ...v } : null;
+      } catch (_) {}
+    }
+    return loadDB().creators.find(c => c.id === id) || null;
+  },
+
+  async trackView(id) {
+    if (isLive()) {
+      try { await rdbIncrement(`resources/${id}`, "views", 1); } catch (_) {}
+      return;
+    }
+    const r = loadDB().resources.find(x => x.id === id);
+    if (r) { r.views = (r.views || 0) + 1; saveDB(); }
+  },
+
+  async trackDownload(id) {
+    if (isLive()) {
+      try {
+        await rdbIncrement(`resources/${id}`, "downloads", 1);
+        await rdbPush("downloadEvents", { resourceId: id, at: Date.now(), type: "click" });
+      } catch (_) {}
+      return;
+    }
+    const r = loadDB().resources.find(x => x.id === id);
+    if (r) { r.downloads = (r.downloads || 0) + 1; saveDB(); }
+  },
+
+  async hasLiked(uid, resourceId) {
+    if (!uid) return false;
+    if (isLive()) {
+      try { return !!(await rdbRead(`likes/${uid}/${resourceId}`)); } catch (_) { return false; }
+    }
+    return !!loadDB().likes?.[uid]?.[resourceId];
+  },
+
+  async toggleLike(uid, resourceId) {
+    if (isLive()) {
+      const liked = !!(await rdbRead(`likes/${uid}/${resourceId}`));
+      if (liked) {
+        await rdbRemove(`likes/${uid}/${resourceId}`);
+        await rdbIncrement(`resources/${resourceId}`, "likes", -1);
+        return false;
+      }
+      await rdbSet(`likes/${uid}/${resourceId}`, true);
+      await rdbIncrement(`resources/${resourceId}`, "likes", 1);
+      return true;
+    }
+    const db = loadDB();
+    db.likes[uid] = db.likes[uid] || {};
+    const r = db.resources.find(x => x.id === resourceId);
+    if (db.likes[uid][resourceId]) {
+      delete db.likes[uid][resourceId];
+      if (r) r.likes = Math.max(0, r.likes - 1);
+      saveDB(); return false;
+    }
+    db.likes[uid][resourceId] = true;
+    if (r) r.likes += 1;
+    saveDB(); return true;
+  },
+
+  async isFavorite(uid, resourceId) {
+    if (!uid) return false;
+    if (isLive()) {
+      try { return !!(await rdbRead(`favorites/${uid}/${resourceId}`)); } catch (_) { return false; }
+    }
+    return !!loadDB().favorites?.[uid]?.[resourceId];
+  },
+
+  async toggleFavorite(uid, resourceId) {
+    if (isLive()) {
+      const on = !!(await rdbRead(`favorites/${uid}/${resourceId}`));
+      if (on) { await rdbRemove(`favorites/${uid}/${resourceId}`); return false; }
+      await rdbSet(`favorites/${uid}/${resourceId}`, true);
+      return true;
+    }
+    const db = loadDB();
+    db.favorites[uid] = db.favorites[uid] || {};
+    const on = !db.favorites[uid][resourceId];
+    if (on) db.favorites[uid][resourceId] = true; else delete db.favorites[uid][resourceId];
+    saveDB(); return on;
+  },
+
+  async favorites(uid) {
+    if (isLive()) {
+      try {
+        const obj = (await rdbRead(`favorites/${uid}`)) || {};
+        const ids = Object.keys(obj);
+        if (!ids.length) return [];
+        const all = await this.resources();
+        return all.filter(r => ids.includes(r.id));
+      } catch (_) { return []; }
+    }
+    const db = loadDB();
+    const ids = Object.keys(db.favorites[uid] || {});
+    return db.resources.filter(r => ids.includes(r.id));
+  },
+
+  async collections(uid) {
+    if (isLive()) {
+      try {
+        const obj = await rdbRead(`collections/${uid}`);
+        return objToArr(obj).map(c => ({
+          ...c,
+          resourceIds: c.resourceIds ? Object.keys(c.resourceIds) : []
+        }));
+      } catch (_) { return []; }
+    }
+    return (loadDB().collections[uid] || []);
+  },
+
+  async createCollection(uid, name, isPublic = true) {
+    if (isLive()) {
+      return rdbPush(`collections/${uid}`, {
+        ownerId: uid, name, isPublic,
+        resourceIds: {}, createdAt: Date.now()
+      });
+    }
+    const db = loadDB();
+    db.collections[uid] = db.collections[uid] || [];
+    const col = { id: "col" + Date.now(), ownerId: uid, name, isPublic, resourceIds: [] };
+    db.collections[uid].push(col);
+    saveDB();
+    return col.id;
+  },
+
+  async addToCollection(uid, collectionId, resourceId) {
+    if (isLive()) {
+      const current = (await rdbRead(`collections/${uid}/${collectionId}/resourceIds`)) || {};
+      const has = !!current[resourceId];
+      if (has) {
+        await rdbRemove(`collections/${uid}/${collectionId}/resourceIds/${resourceId}`);
+      } else {
+        await rdbSet(`collections/${uid}/${collectionId}/resourceIds/${resourceId}`, true);
+      }
+      return !has;
+    }
+    const db = loadDB();
+    const col = (db.collections[uid] || []).find(c => c.id === collectionId);
+    if (!col) return false;
+    const i = col.resourceIds.indexOf(resourceId);
+    if (i > -1) col.resourceIds.splice(i, 1); else col.resourceIds.push(resourceId);
+    saveDB();
+    return i === -1;
+  },
+
+  async comments(resourceId) {
+    if (isLive()) {
+      try {
+        const obj = await rdbRead(`comments/${resourceId}`);
+        return objToArr(obj).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      } catch (_) { return []; }
+    }
+    return loadDB().comments[resourceId] || [];
+  },
+
+  async addComment(uid, userName, resourceId, body, rating) {
+    const payload = { resourceId, userId: uid, userName, body, rating, createdAt: Date.now() };
+    if (isLive()) {
+      const id = await rdbPush(`comments/${resourceId}`, payload);
+      return { id, ...payload };
+    }
+    const db = loadDB();
+    db.comments[resourceId] = db.comments[resourceId] || [];
+    db.comments[resourceId].unshift(payload);
+    saveDB();
+    return payload;
+  },
+
+  async submitResource(uid, data) {
+    const payload = {
+      ...data, creatorId: uid, status: data.status || "pending_review",
+      createdAt: Date.now(), updatedAt: Date.now()
+    };
+    if (isLive()) {
+      return rdbPush("submissions", payload);
+    }
+    const db = loadDB();
+    const id = "sub" + Date.now();
+    db.submissions.unshift({ id, ...payload });
+    saveDB();
+    return id;
+  },
+
+  async mySubmissions(uid) {
+    if (isLive()) {
+      try {
+        const all = objToArr(await rdbRead("submissions"));
+        return all.filter(s => s.creatorId === uid);
+      } catch (_) { return []; }
+    }
+    return loadDB().submissions.filter(s => s.creatorId === uid);
+  },
+
+  async notifications(uid) {
+    if (isLive()) {
+      try { return objToArr(await rdbRead(`notifications/${uid}`)); } catch (_) { return []; }
+    }
+    return loadDB().notifications[uid] || [];
+  },
+
+  async report(payload) {
+    if (isLive()) { return rdbPush("reports", { ...payload, createdAt: Date.now() }); }
+    const db = loadDB();
+    db.reports.push({ id: "rep" + Date.now(), ...payload, createdAt: Date.now() });
+    saveDB();
+    return true;
+  },
+
+  async settings() {
+    if (isLive()) {
+      try { return (await rdbRead("settings")) || {}; } catch (_) { return {}; }
+    }
+    return { maintenance: false, commentsEnabled: true, siteName: SITE.name };
+  }
+};
+
+/* ================================================================
+   5. AUTHENTICATION — local browser accounts only
+   ================================================================ */
+const state = {
+  user: null,
+  profile: null,
+  categories: [],
+  settings: {},
+  filters: { q: "", category: "all", edition: "all", version: "all", sort: "newest", page: 1 }
+};
+
+function getLocalUser() {
+  try {
+    const raw = localStorage.getItem("mrh:user:v1");
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) { return null; }
+}
+function setLocalUser(u) {
+  if (u) localStorage.setItem("mrh:user:v1", JSON.stringify(u));
+  else localStorage.removeItem("mrh:user:v1");
+  state.user = u;
+  state.profile = u;
+  paintAuthArea();
+}
+
+async function initAuth() {
+  state.user = getLocalUser();
+  state.profile = state.user;
+  paintAuthArea();
+}
+
+async function signIn(email, password) {
+  const db = loadDB();
+  const acc = db.users[email.toLowerCase()];
+  if (!acc || acc.password !== password) throw new Error("Invalid email or password.");
+  setLocalUser({ uid: acc.uid, email: acc.email, displayName: acc.displayName });
+}
+
+async function signUp(email, password, displayName) {
+  const db = loadDB();
+  const key = email.toLowerCase();
+  if (db.users[key]) throw new Error("An account with that email already exists in this browser.");
+  const uid = "u" + Date.now() + Math.random().toString(36).slice(2, 6);
+  db.users[key] = { uid, email, password, displayName };
+  saveDB();
+  setLocalUser({ uid, email, displayName });
+}
+
+async function signInGoogle() {
+  throw new Error("Google sign-in is not available. Please register with email.");
+}
+
+async function signOutUser() {
+  setLocalUser(null);
+  toast("Signed out.");
+  go("/");
+}
+
+function requireAuth() {
+  if (!state.user) { go("/login"); return false; }
+  return true;
+}
+
+/* ---------- Header auth area ---------- */
+function paintAuthArea() {
+  const area = $("#authArea");
+  const submitBtn = $("#submitBtn");
+  if (!area) return;
+  if (state.user) {
+    const name = state.profile?.displayName || state.user.displayName || "User";
+    area.innerHTML = `<button class="avatar" id="avatarBtn" aria-label="Account menu">${esc(initials(name))}</button>`;
+    if (submitBtn) submitBtn.style.display = "inline-flex";
+    $("#avatarBtn")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const menu = $("#userMenu");
+      menu.innerHTML = `
+        <div class="menu-head">
+          <strong>${esc(name)}</strong>
+          <span>${esc(state.user.email || "")}</span>
+        </div>
+        <a href="#/dashboard"><i data-lucide="layout-dashboard"></i> Creator Dashboard</a>
+        <a href="#/favorites"><i data-lucide="heart"></i> Favorites</a>
+        <a href="#/collections"><i data-lucide="folder-heart"></i> Collections</a>
+        <a href="#/notifications"><i data-lucide="bell"></i> Notifications</a>
+        <a href="#/submit"><i data-lucide="upload"></i> Submit Resource</a>
+        <div class="sep"></div>
+        <button class="danger" id="signOutBtn"><i data-lucide="log-out"></i> Sign out</button>`;
+      menu.classList.toggle("open");
+      refreshIcons();
+      $("#signOutBtn")?.addEventListener("click", () => { menu.classList.remove("open"); signOutUser(); });
+    });
+  } else {
+    area.innerHTML = `<a href="#/login" class="btn btn-secondary btn-sm"><i data-lucide="log-in"></i> Sign in</a>`;
+    if (submitBtn) submitBtn.style.display = "none";
+  }
+  refreshIcons();
+  updateNotifDot();
+}
+async function updateNotifDot() {
+  const dot = $("#notifDot");
+  if (!dot) return;
+  if (!state.user) { dot.classList.add("hidden"); return; }
+  try {
+    const list = await api.notifications(state.user.uid);
+    dot.classList.toggle("hidden", !list.some(n => !n.read));
+  } catch (_) { dot.classList.add("hidden"); }
+}
+
+/* ================================================================
+   6. SHARED COMPONENTS
+   ================================================================ */
+function catName(id) {
+  return state.categories.find(c => c.id === id)?.name || "Resource";
+}
+function catIcon(id) {
+  return state.categories.find(c => c.id === id)?.icon || "box";
+}
+function catColor(id) {
+  return state.categories.find(c => c.id === id)?.color || "#22C55E";
+}
+
+function resourceCard(r) {
+  return `
+  <a class="rcard" href="#/resource/${esc(r.slug)}">
+    <div class="rcard-cover" style="${coverStyle(r.name)}">
+      <span class="rcard-cat">${esc(catName(r.categoryId))}</span>
+      ${r.featured ? `<span class="rcard-feat"><i data-lucide="sparkles"></i>Featured</span>` : ""}
+      <span class="rcard-glyph">${esc(initials(r.name))}</span>
+    </div>
+    <div class="rcard-body">
+      <h3>${esc(r.name)}</h3>
+      <p class="rcard-creator">by ${esc(r.creatorName || "Unknown")}</p>
+      <div class="rcard-meta">
+        <span><i data-lucide="download"></i>${fmtNum(r.downloads)}</span>
+        <span><i data-lucide="heart"></i>${fmtNum(r.likes)}</span>
+        <span class="rcard-ver">${esc((r.mcVersions && r.mcVersions[0]) || "—")}</span>
+      </div>
+    </div>
+  </a>`;
+}
+
+function resourceGrid(list) {
+  if (!list.length) return emptyState("search-x", "No resources found", "Try widening your filters or searching for something else.");
+  return `<div class="rgrid">${list.map(resourceCard).join("")}</div>`;
+}
+
+function emptyState(icon, title, text, actionHtml = "") {
+  return `<div class="empty">
+    <i data-lucide="${icon}"></i>
+    <h3>${esc(title)}</h3>
+    <p>${esc(text)}</p>
+    ${actionHtml}
+  </div>`;
+}
+
+function sectionHead(title, subtitle, linkHref, linkText) {
+  return `<div class="section-head">
+    <div>
+      <h2>${esc(title)}</h2>
+      ${subtitle ? `<p>${esc(subtitle)}</p>` : ""}
+    </div>
+    ${linkHref ? `<a class="section-link" href="${linkHref}">${esc(linkText || "View all")} <i data-lucide="arrow-right"></i></a>` : ""}
+  </div>`;
+}
+
+function filterAndSort(list, f) {
+  let out = [...list];
+  if (f.category && f.category !== "all") out = out.filter(r => r.categoryId === f.category);
+  if (f.edition && f.edition !== "all") out = out.filter(r => r.edition === f.edition || r.edition === "both");
+  if (f.version && f.version !== "all") out = out.filter(r => (r.mcVersions || []).includes(f.version));
+  if (f.q) {
+    const q = f.q.toLowerCase();
+    out = out.filter(r =>
+      (r.name + " " + (r.creatorName || "") + " " + (r.tags || []).join(" ") + " " + (r.tagline || ""))
+        .toLowerCase().includes(q)
+    );
+  }
+  switch (f.sort) {
+    case "popular": out.sort((a, b) => (b.downloads || 0) - (a.downloads || 0)); break;
+    case "likes":   out.sort((a, b) => (b.likes || 0) - (a.likes || 0)); break;
+    case "updated": out.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0)); break;
+    case "oldest":  out.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0)); break;
+    default:        out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  }
+  return out;
+}
+
+/* ================================================================
+   7. PAGES
+   ================================================================ */
+const pages = {};
+
+/* ---------------- HOME ---------------- */
+pages.home = async () => {
+  const all = await api.resources();
+  const creators = await api.creators();
+
+  const featured  = all.filter(r => r.featured).slice(0, 4);
+  const latest    = [...all].sort((a, b) => b.createdAt - a.createdAt).slice(0, 4);
+  const popular   = [...all].sort((a, b) => b.downloads - a.downloads).slice(0, 4);
+  const topLiked  = [...all].sort((a, b) => b.likes - a.likes).slice(0, 4);
+  const updated   = [...all].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 4);
+
+  const totals = all.reduce((acc, r) => ({
+    downloads: acc.downloads + (r.downloads || 0),
+    likes: acc.likes + (r.likes || 0)
+  }), { downloads: 0, likes: 0 });
+
+  const counts = {};
+  all.forEach(r => counts[r.categoryId] = (counts[r.categoryId] || 0) + 1);
+
+  return {
+    html: `
+    <section class="hero">
+      <div class="container">
+        <div class="hero-eyebrow"><span class="pulse"></span> Community-reviewed &nbsp;·&nbsp; ${all.length} resources live</div>
+        <h1>The premium home for <span class="accent">Minecraft</span> resources.</h1>
+        <p class="hero-sub">Hand-picked shaders, mods, texture packs, maps and add-ons — every submission reviewed by a human before it reaches your game. No filler. No broken links.</p>
+
+        <form class="hero-search" id="heroSearch">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input type="text" name="q" placeholder="Search shaders, mods, creators…" aria-label="Search resources" />
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit">Search</button>
+        </form>
+
+        <div class="hero-stats">
+          <div class="hero-stat"><b>${fmtNum(totals.downloads)}</b><span>Downloads</span></div>
+          <div class="hero-stat"><b>${fmtNum(totals.likes)}</b><span>Likes</span></div>
+          <div class="hero-stat"><b>${all.length}</b><span>Resources</span></div>
+          <div class="hero-stat"><b>${creators.length}</b><span>Creators</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      ${sectionHead("Browse by category", "Every resource is sorted into a clear, verified category.")}
+      <div class="cat-grid">
+        ${state.categories.map(c => `
+          <a class="cat-card" href="#/library?category=${c.id}">
+            <span class="cat-icon" style="color:${c.color}"><i data-lucide="${c.icon}"></i></span>
+            <span><b>${esc(c.name)}</b><span>${counts[c.id] || 0} resources</span></span>
+          </a>`).join("")}
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Featured resources", "Editor-selected picks from our verified creators.", "#/library?sort=popular", "Browse all")}
+      ${resourceGrid(featured)}
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Trending now", "The most downloaded resources this month.", "#/library?sort=popular")}
+      ${resourceGrid(popular)}
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Latest uploads", "Fresh from the review queue.", "#/library?sort=newest")}
+      ${resourceGrid(latest)}
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Top rated by the community", "Resources with the highest like-to-download ratio.", "#/library?sort=likes")}
+      ${resourceGrid(topLiked)}
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Recently updated", "Actively maintained and version-verified.", "#/library?sort=updated")}
+      ${resourceGrid(updated)}
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      ${sectionHead("Popular creators", "Studios and individuals shipping consistent quality.", "#/creators", "All creators")}
+      <div class="creator-grid">
+        ${creators.slice(0, 4).map(c => `
+          <a class="creator-card" href="#/creator/${c.id}">
+            <div class="av">${esc(initials(c.name))}</div>
+            <h3>${esc(c.name)} ${c.verified ? `<i data-lucide="badge-check" style="width:14px;height:14px;color:var(--emerald-2);display:inline;vertical-align:-2px"></i>` : ""}</h3>
+            <p>${esc(c.bio)}</p>
+            <div class="stats">
+              <div><b>${fmtNum(c.downloads)}</b>Downloads</div>
+              <div><b>${c.resources}</b>Resources</div>
+            </div>
+          </a>`).join("")}
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="panel" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;padding:34px;background:linear-gradient(120deg,rgba(34,197,94,.11),rgba(16,23,21,.6));border-color:rgba(34,197,94,.28)">
+        <div style="flex:1;min-width:260px">
+          <h2 style="font-size:24px;margin-bottom:8px">You build it. We'll help it get found.</h2>
+          <p style="color:var(--text-2);font-size:14.5px;max-width:56ch">Submit your shader, mod, texture pack or map to the review queue. Once approved, it goes live on the public hub with full version metadata, changelogs and download analytics.</p>
+        </div>
+        <a href="#/submit" class="btn btn-primary btn-lg"><i data-lucide="upload"></i> Submit your resource</a>
+      </div>
+    </section>`,
+    after: () => {
+      $("#heroSearch")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const q = new FormData(e.target).get("q") || "";
+        go("/library?q=" + encodeURIComponent(q));
+      });
+    }
+  };
+};
+
+/* ---------------- LIBRARY ---------------- */
+pages.library = async ({ query }) => {
+  state.filters.category = query.get("category") || "all";
+  state.filters.q = query.get("q") || "";
+  state.filters.edition = query.get("edition") || "all";
+  state.filters.version = query.get("version") || "all";
+  state.filters.sort = query.get("sort") || "newest";
+  state.filters.page = Number(query.get("page") || 1);
+
+  const all = await api.resources();
+  const filtered = filterAndSort(all, state.filters);
+
+  const perPage = SITE.pageSize;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+  const page = Math.min(state.filters.page, totalPages);
+  const slice = filtered.slice((page - 1) * perPage, page * perPage);
+
+  const counts = {};
+  all.forEach(r => counts[r.categoryId] = (counts[r.categoryId] || 0) + 1);
+
+  const versions = [...new Set(all.flatMap(r => r.mcVersions || []))].sort().reverse();
+  const activeCat = state.filters.category;
+
+  const buildUrl = (patch = {}) => {
+    const p = new URLSearchParams();
+    const merged = { ...state.filters, ...patch };
+    if (merged.q) p.set("q", merged.q);
+    if (merged.category !== "all") p.set("category", merged.category);
+    if (merged.edition !== "all") p.set("edition", merged.edition);
+    if (merged.version !== "all") p.set("version", merged.version);
+    if (merged.sort !== "newest") p.set("sort", merged.sort);
+    if (merged.page > 1) p.set("page", merged.page);
+    const s = p.toString();
+    return "#/library" + (s ? "?" + s : "");
+  };
+
+  const title = activeCat === "all" ? "All resources" : catName(activeCat);
+
+  return {
+    html: `
+    <div class="page-head">
+      <div class="container">
+        <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>${esc(title)}</span></div>
+        <h1>${esc(title)}</h1>
+        <p>${filtered.length} verified resource${filtered.length === 1 ? "" : "s"}${state.filters.q ? ` matching “${esc(state.filters.q)}”` : ""}. Filters update instantly.</p>
+      </div>
+    </div>
+
+    <div class="container library">
+      <aside class="filters">
+        <div class="filter-group">
+          <h4>Category</h4>
+          <div class="filter-list">
+            <a class="filter-item ${activeCat === "all" ? "active" : ""}" href="${buildUrl({ category: "all", page: 1 })}">
+              <i data-lucide="layers"></i> All resources <span class="count">${all.length}</span>
+            </a>
+            ${state.categories.map(c => `
+              <a class="filter-item ${activeCat === c.id ? "active" : ""}" href="${buildUrl({ category: c.id, page: 1 })}">
+                <i data-lucide="${c.icon}"></i> ${esc(c.name)} <span class="count">${counts[c.id] || 0}</span>
+              </a>`).join("")}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Edition</h4>
+          <div class="filter-list">
+            ${[["all", "All editions"], ["java", "Java Edition"], ["bedrock", "Bedrock Edition"], ["both", "Cross-platform"]].map(([v, l]) => `
+              <a class="filter-item ${state.filters.edition === v ? "active" : ""}" href="${buildUrl({ edition: v, page: 1 })}">
+                <i data-lucide="${v === "java" ? "coffee" : v === "bedrock" ? "smartphone" : v === "both" ? "shuffle" : "globe"}"></i> ${l}
+              </a>`).join("")}
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Minecraft version</h4>
+          <select class="select" id="versionFilter">
+            <option value="all">All versions</option>
+            ${versions.map(v => `<option value="${esc(v)}" ${state.filters.version === v ? "selected" : ""}>${esc(v)}</option>`).join("")}
+          </select>
+        </div>
+
+        <a href="#/library" class="btn btn-outline btn-block btn-sm"><i data-lucide="rotate-ccw"></i> Reset filters</a>
+      </aside>
+
+      <div>
+        <div class="toolbar">
+          <span class="result-count">Showing ${slice.length} of ${filtered.length}</span>
+          <span class="spacer"></span>
+          <input class="input" id="libSearch" type="search" placeholder="Filter results…" value="${esc(state.filters.q)}" />
+          <select class="select" id="sortFilter">
+            <option value="newest"  ${state.filters.sort === "newest"  ? "selected" : ""}>Newest first</option>
+            <option value="popular" ${state.filters.sort === "popular" ? "selected" : ""}>Most downloaded</option>
+            <option value="likes"   ${state.filters.sort === "likes"   ? "selected" : ""}>Most liked</option>
+            <option value="updated" ${state.filters.sort === "updated" ? "selected" : ""}>Recently updated</option>
+            <option value="oldest"  ${state.filters.sort === "oldest"  ? "selected" : ""}>Oldest first</option>
+          </select>
+        </div>
+
+        ${resourceGrid(slice)}
+
+        ${totalPages > 1 ? `
+        <div class="pagination">
+          <button ${page <= 1 ? "disabled" : ""} onclick="location.hash='${buildUrl({ page: page - 1 })}'">Prev</button>
+          ${Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter(p => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
+            .map((p, idx, arr) => {
+              const gap = idx > 0 && p - arr[idx - 1] > 1 ? `<span style="color:var(--text-3);padding:0 4px">…</span>` : "";
+              return gap + `<button class="${p === page ? "active" : ""}" onclick="location.hash='${buildUrl({ page: p })}'">${p}</button>`;
+            }).join("")}
+          <button ${page >= totalPages ? "disabled" : ""} onclick="location.hash='${buildUrl({ page: page + 1 })}'">Next</button>
+        </div>` : ""}
+      </div>
+    </div>`,
+    after: () => {
+      $("#sortFilter")?.addEventListener("change", e => go(buildUrl({ sort: e.target.value, page: 1 }).replace("#", "")));
+      $("#versionFilter")?.addEventListener("change", e => go(buildUrl({ version: e.target.value, page: 1 }).replace("#", "")));
+      const search = $("#libSearch");
+      let timer;
+      search?.addEventListener("input", e => {
+        clearTimeout(timer);
+        timer = setTimeout(() => go(buildUrl({ q: e.target.value, page: 1 }).replace("#", "")), 400);
+      });
+    }
+  };
+};
+
+/* ---------------- RESOURCE DETAIL ---------------- */
+let detailTab = "overview";
+
+pages.resource = async ({ parts }) => {
+  const slug = parts[1];
+  const r = await api.resource(slug);
+  if (!r) return { html: `<div class="container" style="padding:80px 24px">${emptyState("alert-triangle", "Resource not found", "This resource may have been removed or the link is incorrect.", `<a class="btn btn-primary" href="#/library">Browse resources</a>`)}</div>` };
+
+  api.trackView(r.id);
+
+  const creator = await api.creator(r.creatorId);
+  const comments = await api.comments(r.id);
+  const all = await api.resources();
+  const related = all.filter(x => x.categoryId === r.categoryId && x.id !== r.id).slice(0, 4);
+  const liked = await api.hasLiked(state.user?.uid, r.id);
+  const faved = await api.isFavorite(state.user?.uid, r.id);
+  const avgRating = comments.length ? comments.reduce((a, c) => a + (c.rating || 0), 0) / comments.length : 0;
+
+  const editionLabel = { java: "Java Edition", bedrock: "Bedrock Edition", both: "Java & Bedrock" }[r.edition] || r.edition;
+
+  const tabContent = () => {
+    if (detailTab === "install") {
+      return `<div class="prose">${r.install || "<p>No installation instructions provided.</p>"}</div>`;
+    }
+    if (detailTab === "changelog") {
+      const cl = Array.isArray(r.changelog) ? r.changelog : (r.changelog ? Object.values(r.changelog) : []);
+      return `<div class="prose">
+        ${cl.map(c => `
+          <div style="padding:14px 0;border-bottom:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <strong style="color:var(--text)">v${esc(c.version)}</strong>
+              <span style="font-size:12px;color:var(--text-3)">${fmtDate(c.date)}</span>
+            </div>
+            <p style="margin:0">${esc(c.notes)}</p>
+          </div>`).join("") || "<p>No changelog entries yet.</p>"}
+      </div>`;
+    }
+    if (detailTab === "reviews") {
+      return `
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)">
+          <div style="font-family:var(--font-head);font-size:38px;font-weight:800;letter-spacing:-.04em">${avgRating ? avgRating.toFixed(1) : "—"}</div>
+          <div>
+            ${stars(avgRating)}
+            <div style="font-size:12.5px;color:var(--text-3);margin-top:3px">${comments.length} review${comments.length === 1 ? "" : "s"}</div>
+          </div>
+        </div>
+        ${state.user ? `
+        <form id="reviewForm" style="margin-bottom:22px">
+          <div class="field">
+            <label>Your rating</label>
+            <select class="select" name="rating">
+              <option value="5">★★★★★ — Excellent</option>
+              <option value="4">★★★★☆ — Good</option>
+              <option value="3">★★★☆☆ — Average</option>
+              <option value="2">★★☆☆☆ — Poor</option>
+              <option value="1">★☆☆☆☆ — Broken</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Your review</label>
+            <textarea class="textarea" name="body" rows="3" placeholder="Share your experience with this resource…" required minlength="10"></textarea>
+          </div>
+          <button class="btn btn-primary btn-sm" type="submit"><i data-lucide="send"></i> Post review</button>
+        </form>` : `<p style="font-size:13.5px;color:var(--text-3);margin-bottom:20px"><a href="#/login" style="color:var(--emerald-2);font-weight:600">Sign in</a> to leave a review.</p>`}
+        <div id="commentList">
+          ${comments.length ? comments.map(c => `
+            <div class="comment">
+              <div class="av">${esc(initials(c.userName || "U"))}</div>
+              <div style="flex:1;min-width:0">
+                <div class="comment-head">
+                  <b>${esc(c.userName || "User")}</b>
+                  ${c.rating ? stars(c.rating) : ""}
+                  <time>${timeAgo(c.createdAt)}</time>
+                </div>
+                <div class="comment-body">${esc(c.body)}</div>
+              </div>
+            </div>`).join("") : `<p style="color:var(--text-3);font-size:14px">No reviews yet. Be the first to share your thoughts.</p>`}
+        </div>`;
+    }
+    return `<div class="prose">${r.description || "<p>No description provided.</p>"}</div>`;
+  };
+
+  return {
+    html: `
+    <div class="detail-hero" style="${coverStyle(r.name)}"></div>
+    <div class="container">
+      <div class="detail-wrap">
+        <div class="detail-main">
+          <div class="crumbs" style="margin-bottom:14px">
+            <a href="#/">Home</a><i data-lucide="chevron-right"></i>
+            <a href="#/library?category=${esc(r.categoryId)}">${esc(catName(r.categoryId))}</a><i data-lucide="chevron-right"></i>
+            <span>${esc(r.name)}</span>
+          </div>
+
+          <div class="detail-title-row">
+            <div class="detail-logo" style="${coverStyle(r.name + "logo")}">${esc(initials(r.name))}</div>
+            <div style="min-width:0;flex:1">
+              <h1>${esc(r.name)}</h1>
+              <p class="detail-tagline">${esc(r.tagline || "")}</p>
+              <div class="detail-badges">
+                <span class="badge badge-green"><i data-lucide="badge-check"></i> Verified</span>
+                <span class="badge"><i data-lucide="${catIcon(r.categoryId)}"></i> ${esc(catName(r.categoryId))}</span>
+                <span class="badge"><i data-lucide="gamepad-2"></i> ${esc(editionLabel)}</span>
+                <span class="badge"><i data-lucide="tag"></i> v${esc(r.version || "—")}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabs" role="tablist">
+            <button class="tab ${detailTab === "overview" ? "active" : ""}" data-tab="overview">Overview</button>
+            <button class="tab ${detailTab === "install" ? "active" : ""}" data-tab="install">Installation</button>
+            <button class="tab ${detailTab === "changelog" ? "active" : ""}" data-tab="changelog">Changelog</button>
+            <button class="tab ${detailTab === "reviews" ? "active" : ""}" data-tab="reviews">Reviews (${comments.length})</button>
+          </div>
+
+          <div id="tabBody">${tabContent()}</div>
+        </div>
+
+        <aside>
+          <div class="side-card">
+            <a class="btn btn-primary btn-lg btn-block" id="downloadBtn" href="#" data-id="${esc(r.id)}" data-url="${esc(r.downloadUrl || "#")}">
+              <i data-lucide="download"></i> Download
+            </a>
+            <div style="display:flex;gap:8px;margin-top:9px">
+              <button class="btn btn-secondary btn-sm" style="flex:1" id="likeBtn" data-id="${esc(r.id)}">
+                <i data-lucide="heart" style="${liked ? "fill:var(--emerald-2);color:var(--emerald-2)" : ""}"></i>
+                <span id="likeCount">${fmtNum(r.likes)}</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" style="flex:1" id="favBtn" data-id="${esc(r.id)}">
+                <i data-lucide="bookmark" style="${faved ? "fill:var(--emerald-2);color:var(--emerald-2)" : ""}"></i>
+                <span>${faved ? "Saved" : "Save"}</span>
+              </button>
+            </div>
+            <button class="btn btn-outline btn-sm btn-block" style="margin-top:9px" id="reportBtn"><i data-lucide="flag"></i> Report an issue</button>
+
+            <dl class="meta-list" style="margin-top:20px">
+              <div class="meta-row"><dt>Version</dt><dd>${esc(r.version || "—")}</dd></div>
+              <div class="meta-row"><dt>File size</dt><dd>${esc(r.fileSize || "—")}</dd></div>
+              <div class="meta-row"><dt>Edition</dt><dd>${esc(editionLabel)}</dd></div>
+              <div class="meta-row"><dt>Compatibility</dt><dd>${esc((r.mcVersions || []).join(", ") || "—")}</dd></div>
+              <div class="meta-row"><dt>License</dt><dd>${esc(r.license || "—")}</dd></div>
+              <div class="meta-row"><dt>Released</dt><dd>${fmtDate(r.createdAt)}</dd></div>
+              <div class="meta-row"><dt>Updated</dt><dd>${fmtDate(r.updatedAt)}</dd></div>
+              <div class="meta-row"><dt>Views</dt><dd>${fmtNum(r.views)}</dd></div>
+              <div class="meta-row"><dt>Downloads</dt><dd>${fmtNum(r.downloads)}</dd></div>
+            </dl>
+
+            ${creator ? `
+            <h4 style="font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin:18px 0 10px">Creator</h4>
+            <a class="creator-mini" href="#/creator/${esc(creator.id)}">
+              <span class="av">${esc(initials(creator.name))}</span>
+              <span style="flex:1;min-width:0">
+                <b>${esc(creator.name)} ${creator.verified ? `<i data-lucide="badge-check" style="width:12px;height:12px;color:var(--emerald-2);display:inline;vertical-align:-1px"></i>` : ""}</b>
+                <span>${creator.resources || 0} resources · ${fmtNum(creator.downloads || 0)} downloads</span>
+              </span>
+              <i data-lucide="chevron-right" style="color:var(--text-3)"></i>
+            </a>` : ""}
+
+            ${(r.tags || []).length ? `
+            <h4 style="font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin:18px 0 10px">Tags</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              ${r.tags.map(t => `<a class="badge" href="#/library?q=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}
+            </div>` : ""}
+          </div>
+        </aside>
+      </div>
+
+      <div style="padding-bottom:64px">
+        ${related.length ? sectionHead("Related resources", "More from " + catName(r.categoryId), "#/library?category=" + r.categoryId) : ""}
+        ${related.length ? resourceGrid(related) : ""}
+      </div>
+    </div>`,
+    after: () => {
+      $$(".tab").forEach(tab => tab.addEventListener("click", () => {
+        detailTab = tab.dataset.tab;
+        render();
+      }));
+
+      $("#likeBtn")?.addEventListener("click", async () => {
+        if (!requireAuth()) return;
+        try {
+          const on = await api.toggleLike(state.user.uid, r.id);
+          toast(on ? "Added to your likes." : "Like removed.");
+          render();
+        } catch (e) { toast(e.message || "Could not update like.", "error"); }
+      });
+
+      $("#favBtn")?.addEventListener("click", async () => {
+        if (!requireAuth()) return;
+        try {
+          const on = await api.toggleFavorite(state.user.uid, r.id);
+          toast(on ? "Saved to favorites." : "Removed from favorites.");
+          render();
+        } catch (e) { toast(e.message || "Could not update favorites.", "error"); }
+      });
+
+      $("#downloadBtn")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        startDownload(r);
+      });
+
+      $("#reportBtn")?.addEventListener("click", () => openReportModal(r));
+
+      $("#reviewForm")?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const body = (fd.get("body") || "").trim();
+        if (body.length < 10) { toast("Please write at least 10 characters.", "error"); return; }
+        try {
+          await api.addComment(state.user.uid, state.profile?.displayName || "User", r.id, body, Number(fd.get("rating")));
+          toast("Review posted. Thank you!");
+          render();
+        } catch (err) { toast(err.message || "Could not post review.", "error"); }
+      });
+    }
+  };
+};
+
+/* Download flow with countdown */
+function startDownload(r) {
+  let seconds = 3;
+  openModal(`
+    <div class="modal-head">
+      <div>
+        <h2>Preparing download</h2>
+        <p>${esc(r.name)} · v${esc(r.version || "—")} · ${esc(r.fileSize || "")}</p>
+      </div>
+      <button class="icon-btn" onclick="window.__closeModal()"><i data-lucide="x"></i></button>
+    </div>
+    <div style="text-align:center;padding:26px 0">
+      <div id="dlCountdown" style="font-family:var(--font-head);font-size:44px;font-weight:800;letter-spacing:-.04em;color:var(--emerald-2)">${seconds}</div>
+      <p style="color:var(--text-3);font-size:13.5px;margin-top:6px">Your download link will be ready shortly…</p>
+    </div>
+    <div id="dlReady" class="hidden">
+      <a class="btn btn-primary btn-lg btn-block" href="${esc(r.downloadUrl || "#")}" target="_blank" rel="noopener noreferrer" id="dlFinal">
+        <i data-lucide="download"></i> Open download link
+      </a>
+      <p style="font-size:12px;color:var(--text-3);text-align:center;margin-top:12px">
+        External link · the creator hosts this file. Always scan files you download.
+      </p>
+    </div>
+  `);
+  refreshIcons();
+  const timer = setInterval(() => {
+    seconds -= 1;
+    const el = $("#dlCountdown");
+    if (el) el.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      $("#dlCountdown")?.parentElement?.remove();
+      $("#dlReady")?.classList.remove("hidden");
+      refreshIcons();
+      api.trackDownload(r.id);
+    }
+  }, 1000);
+}
+
+function openReportModal(r) {
+  const reasons = ["Broken download link", "Incorrect description", "Fake or misleading resource", "Copyright concern", "Inappropriate content", "Malware / security concern"];
+  openModal(`
+    <div class="modal-head">
+      <div><h2>Report this resource</h2><p>${esc(r.name)}</p></div>
+      <button class="icon-btn" onclick="window.__closeModal()"><i data-lucide="x"></i></button>
+    </div>
+    <form id="reportForm">
+      <div class="field">
+        <label>Reason <span class="req">*</span></label>
+        <select class="select" name="reason" required>
+          ${reasons.map(x => `<option>${esc(x)}</option>`).join("")}
+        </select>
+      </div>
+      <div class="field">
+        <label>Details</label>
+        <textarea class="textarea" name="details" rows="3" placeholder="Describe the problem as precisely as you can…"></textarea>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit"><i data-lucide="flag"></i> Submit report</button>
+    </form>
+  `);
+  refreshIcons();
+  $("#reportForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    await api.report({
+      resourceId: r.id, resourceName: r.name,
+      reason: fd.get("reason"), details: fd.get("details"),
+      reporterId: state.user?.uid || null
+    });
+    closeModal();
+    toast("Report submitted. Our moderators will review it.");
+  });
+}
+
+/* ---------------- CREATORS ---------------- */
+pages.creators = async () => {
+  const creators = await api.creators();
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Creators</span></div>
+      <h1>Creators</h1>
+      <p>Studios and individuals publishing verified Minecraft resources on the hub.</p>
+    </div></div>
+    <section class="section container">
+      <div class="creator-grid">
+        ${creators.map(c => `
+          <a class="creator-card" href="#/creator/${c.id}">
+            <div class="av">${esc(initials(c.name))}</div>
+            <h3>${esc(c.name)} ${c.verified ? `<i data-lucide="badge-check" style="width:14px;height:14px;color:var(--emerald-2);display:inline;vertical-align:-2px"></i>` : ""}</h3>
+            <p>${esc(c.bio)}</p>
+            <div class="stats">
+              <div><b>${c.resources || 0}</b>Resources</div>
+              <div><b>${fmtNum(c.downloads)}</b>Downloads</div>
+              <div><b>${fmtNum(c.likes)}</b>Likes</div>
+            </div>
+          </a>`).join("")}
+      </div>
+    </section>`
+  };
+};
+
+pages.creator = async ({ parts }) => {
+  const c = await api.creator(parts[1]);
+  if (!c) return { html: `<div class="container" style="padding:80px 24px">${emptyState("user-x", "Creator not found", "This profile does not exist.", `<a class="btn btn-primary" href="#/creators">All creators</a>`)}</div>` };
+  const all = await api.resources();
+  const owned = all.filter(r => r.creatorId === c.id);
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><a href="#/creators">Creators</a><i data-lucide="chevron-right"></i><span>${esc(c.name)}</span></div>
+      <div style="display:flex;align-items:center;gap:20px;margin-top:8px;flex-wrap:wrap">
+        <div style="width:78px;height:78px;border-radius:20px;display:grid;place-items:center;font-family:var(--font-head);font-size:28px;font-weight:800;color:#03150B;background:linear-gradient(140deg,#34D399,#0E7A46);box-shadow:0 14px 32px -16px rgba(34,197,94,.9)">${esc(initials(c.name))}</div>
+        <div>
+          <h1>${esc(c.name)} ${c.verified ? `<i data-lucide="badge-check" style="width:20px;height:20px;color:var(--emerald-2);display:inline;vertical-align:-3px"></i>` : ""}</h1>
+          <p style="color:var(--text-3);font-size:13.5px;margin-top:3px">${esc(c.handle || "")} · ${esc(c.bio || "")}</p>
+        </div>
+      </div>
+    </div></div>
+    <section class="section container">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="lbl"><i data-lucide="package"></i> Resources</div><b>${owned.length}</b></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="download"></i> Downloads</div><b>${fmtNum(c.downloads)}</b></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="heart"></i> Likes</div><b>${fmtNum(c.likes)}</b></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="badge-check"></i> Status</div><b style="font-size:18px">${c.verified ? "Verified" : "Community"}</b></div>
+      </div>
+      ${sectionHead("Published resources", "")}
+      ${resourceGrid(owned)}
+    </section>`
+  };
+};
+
+/* ---------------- LOGIN ---------------- */
+let authMode = "login";
+pages.login = async () => {
+  if (state.user) { go("/dashboard"); return { html: "" }; }
+  return {
+    html: `
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <h1>${authMode === "login" ? "Welcome back" : "Create your account"}</h1>
+        <p class="sub">${authMode === "login" ? "Sign in to submit resources, save favorites and track your downloads." : "Join the hub to publish resources and build a creator profile."}</p>
+
+        <div class="auth-tabs">
+          <button class="${authMode === "login" ? "active" : ""}" data-mode="login">Sign in</button>
+          <button class="${authMode === "register" ? "active" : ""}" data-mode="register">Register</button>
+        </div>
+
+        <form id="authForm">
+          ${authMode === "register" ? `
+          <div class="field">
+            <label>Display name <span class="req">*</span></label>
+            <input class="input" name="displayName" required minlength="2" placeholder="e.g. Aurora Studio" />
+          </div>` : ""}
+          <div class="field">
+            <label>Email <span class="req">*</span></label>
+            <input class="input" type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label>Password <span class="req">*</span></label>
+            <input class="input" type="password" name="password" required minlength="6" placeholder="••••••••" autocomplete="${authMode === "login" ? "current-password" : "new-password"}" />
+            ${authMode === "register" ? `<div class="hint">At least 6 characters.</div>` : ""}
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" id="authSubmit">${authMode === "login" ? "Sign in" : "Create account"}</button>
+        </form>
+
+        <p style="font-size:11.5px;color:var(--text-3);text-align:center;margin-top:20px;line-height:1.6">
+          Accounts are stored in this browser. Comments, submissions and reviews sync to the shared database.
+        </p>
+      </div>
+    </div>`,
+    after: () => {
+      $$("[data-mode]").forEach(b => b.addEventListener("click", () => { authMode = b.dataset.mode; render(); }));
+
+      $("#authForm")?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = $("#authSubmit");
+        const fd = new FormData(e.target);
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner"></span> Please wait…`;
+        try {
+          if (authMode === "login") {
+            await signIn(fd.get("email"), fd.get("password"));
+            toast("Signed in successfully.");
+          } else {
+            await signUp(fd.get("email"), fd.get("password"), fd.get("displayName"));
+            toast("Account created. Welcome aboard!");
+          }
+          go("/dashboard");
+        } catch (err) {
+          toast(err.message || "Authentication failed.", "error");
+          btn.disabled = false;
+          btn.textContent = authMode === "login" ? "Sign in" : "Create account";
+        }
+      });
+    }
+  };
+};
+
+/* ---------------- SUBMIT ---------------- */
+pages.submit = async () => {
+  if (!state.user) {
+    return {
+      html: `<div class="container" style="padding:70px 24px">
+        ${emptyState("lock", "Sign in to submit a resource", "You need an account before you can submit work to the review queue.",
+          `<a class="btn btn-primary" href="#/login">Sign in / Register</a>`)}
+      </div>`
+    };
+  }
+
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Submit resource</span></div>
+      <h1>Submit a resource</h1>
+      <p>All submissions enter a manual review queue. Nothing is published automatically — expect feedback within a few days.</p>
+    </div></div>
+
+    <div class="container" style="padding:32px 0 72px;max-width:860px">
+      <form id="submitForm" novalidate>
+
+        <div class="form-section">
+          <h3><i data-lucide="info"></i> Basic information</h3>
+          <p class="sub">How your resource appears across the hub.</p>
+          <div class="field">
+            <label>Resource name <span class="req">*</span></label>
+            <input class="input" name="name" required maxlength="80" placeholder="e.g. Complementary Reimagined" />
+            <div class="field-error">Please enter a resource name.</div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Category <span class="req">*</span></label>
+              <select class="select" name="categoryId" required>
+                <option value="">Select a category…</option>
+                ${state.categories.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join("")}
+              </select>
+              <div class="field-error">Please choose a category.</div>
+            </div>
+            <div class="field">
+              <label>Minecraft edition <span class="req">*</span></label>
+              <select class="select" name="edition" required>
+                <option value="">Select edition…</option>
+                <option value="java">Java Edition</option>
+                <option value="bedrock">Bedrock Edition</option>
+                <option value="both">Both editions</option>
+              </select>
+              <div class="field-error">Please choose an edition.</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Short description <span class="req">*</span></label>
+            <input class="input" name="tagline" required maxlength="160" placeholder="One sentence that captures what makes it special." />
+            <div class="field-error">Please add a short description.</div>
+          </div>
+          <div class="field">
+            <label>Full description <span class="req">*</span></label>
+            <textarea class="textarea" name="description" rows="7" required placeholder="Describe features, design philosophy, performance notes…"></textarea>
+            <div class="hint">Plain text. Line breaks are preserved.</div>
+            <div class="field-error">Please write a full description.</div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3><i data-lucide="git-branch"></i> Version & compatibility</h3>
+          <p class="sub">Only claim compatibility you have actually tested.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label>Resource version <span class="req">*</span></label>
+              <input class="input" name="version" required placeholder="e.g. 1.4.2" />
+              <div class="field-error">Please enter the resource version.</div>
+            </div>
+            <div class="field">
+              <label>File size</label>
+              <input class="input" name="fileSize" placeholder="e.g. 4.2 MB" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Compatible Minecraft versions <span class="req">*</span></label>
+            <input class="input" name="mcVersions" required placeholder="e.g. 1.21, 1.20.6, 1.20.1" />
+            <div class="hint">Comma-separated. These are shown on the resource page.</div>
+            <div class="field-error">Please list at least one version.</div>
+          </div>
+          <div class="field">
+            <label>Download URL <span class="req">*</span></label>
+            <input class="input" type="url" name="downloadUrl" required placeholder="https://…" />
+            <div class="hint">Must be a direct, publicly accessible link. Broken links are removed.</div>
+            <div class="field-error">Please provide a valid URL.</div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label>License</label>
+              <input class="input" name="license" placeholder="e.g. CC BY-NC 4.0" />
+            </div>
+            <div class="field">
+              <label>Video preview URL</label>
+              <input class="input" type="url" name="videoUrl" placeholder="YouTube link (optional)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3><i data-lucide="tags"></i> Tags & instructions</h3>
+          <p class="sub">Help players find and install your work.</p>
+          <div class="field">
+            <label>Tags</label>
+            <input class="input" name="tags" placeholder="performance, realistic, lighting" />
+            <div class="hint">Comma-separated, up to 8 tags.</div>
+          </div>
+          <div class="field">
+            <label>Installation instructions</label>
+            <textarea class="textarea" name="install" rows="5" placeholder="Step-by-step instructions for installing this resource."></textarea>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3><i data-lucide="shield-check"></i> Permissions & confirmation</h3>
+          <p class="sub">Submissions that violate these rules are rejected.</p>
+          <label style="display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:var(--text-2);cursor:pointer;line-height:1.6">
+            <input type="checkbox" name="confirm" required style="margin-top:3px;accent-color:var(--emerald);width:16px;height:16px;flex:none" />
+            <span>I confirm that I am the original creator or have explicit permission to distribute this resource, and that it contains no malicious code.</span>
+          </label>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-lg" type="submit"><i data-lucide="send"></i> Submit for review</button>
+          <button class="btn btn-secondary btn-lg" type="button" id="draftBtn"><i data-lucide="save"></i> Save draft</button>
+        </div>
+        <p style="font-size:12.5px;color:var(--text-3);margin-top:14px">You'll receive a notification once a moderator reviews your submission.</p>
+      </form>
+    </div>`,
+    after: () => {
+      const form = $("#submitForm");
+
+      const collect = (status) => {
+        const fd = new FormData(form);
+        return {
+          name: (fd.get("name") || "").trim(),
+          slug: (fd.get("name") || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+          categoryId: fd.get("categoryId"),
+          edition: fd.get("edition"),
+          tagline: (fd.get("tagline") || "").trim(),
+          description: `<p>${esc(fd.get("description") || "").replace(/\n/g, "</p><p>")}</p>`,
+          version: fd.get("version"),
+          fileSize: fd.get("fileSize"),
+          mcVersions: (fd.get("mcVersions") || "").split(",").map(s => s.trim()).filter(Boolean),
+          downloadUrl: fd.get("downloadUrl"),
+          license: fd.get("license"),
+          videoUrl: fd.get("videoUrl"),
+          tags: (fd.get("tags") || "").split(",").map(s => s.trim()).filter(Boolean).slice(0, 8),
+          install: `<p>${esc(fd.get("install") || "").replace(/\n/g, "</p><p>")}</p>`,
+          creatorName: state.profile?.displayName || "Creator",
+          status
+        };
+      };
+
+      const validate = () => {
+        let ok = true;
+        $$(".field", form).forEach(f => f.classList.remove("invalid"));
+        $$("[required]", form).forEach(input => {
+          if (input.type === "checkbox") {
+            if (!input.checked) { ok = false; toast("Please confirm the permissions checkbox.", "error"); }
+            return;
+          }
+          if (!input.value.trim()) {
+            ok = false;
+            input.closest(".field")?.classList.add("invalid");
+          }
+        });
+        if (!ok) toast("Please complete all required fields.", "error");
+        return ok;
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+        try {
+          await api.submitResource(state.user.uid, collect("pending_review"));
+          toast("Submission received. It's now in the review queue.");
+          go("/dashboard");
+        } catch (err) { toast(err.message || "Submission failed.", "error"); }
+      });
+
+      $("#draftBtn")?.addEventListener("click", async () => {
+        if (!form.name.value.trim()) { toast("Add at least a resource name to save a draft.", "error"); return; }
+        try {
+          await api.submitResource(state.user.uid, collect("draft"));
+          toast("Draft saved.");
+        } catch (err) { toast(err.message || "Could not save draft.", "error"); }
+      });
+    }
+  };
+};
+
+/* ---------------- DASHBOARD ---------------- */
+pages.dashboard = async () => {
+  if (!state.user) { go("/login"); return { html: "" }; }
+  const subs = await api.mySubmissions(state.user.uid);
+  const notifs = await api.notifications(state.user.uid);
+  const name = state.profile?.displayName || "Creator";
+
+  const byStatus = (s) => subs.filter(x => x.status === s).length;
+  const published = subs.filter(x => x.status === "published" || x.status === "approved").length;
+
+  const statusBadge = (s) => {
+    const map = {
+      draft: ["badge", "Draft"], pending_review: ["badge-amber", "Pending review"],
+      under_review: ["badge-blue", "Under review"], changes_requested: ["badge-amber", "Changes requested"],
+      approved: ["badge-green", "Approved"], published: ["badge-green", "Published"],
+      rejected: ["badge-red", "Rejected"], suspended: ["badge-red", "Suspended"]
+    };
+    const [cls, label] = map[s] || ["badge", s];
+    return `<span class="badge ${cls}">${esc(label)}</span>`;
+  };
+
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Creator dashboard</span></div>
+      <h1>Welcome back, ${esc(name.split(" ")[0])}</h1>
+      <p>Track your submissions, monitor performance and manage your published resources.</p>
+    </div></div>
+
+    <div class="container" style="padding:32px 0 72px">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="lbl"><i data-lucide="files"></i> Submissions</div><b>${subs.length}</b><small>All time</small></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="clock"></i> Pending</div><b>${byStatus("pending_review") + byStatus("under_review")}</b><small>Awaiting review</small></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="check-circle"></i> Published</div><b>${published}</b><small>Live on the hub</small></div>
+        <div class="stat-card"><div class="lbl"><i data-lucide="bell"></i> Notifications</div><b>${notifs.filter(n => !n.read).length}</b><small>Unread</small></div>
+      </div>
+
+      <div class="section-head" style="margin-bottom:16px">
+        <div><h2 style="font-size:19px">Your submissions</h2></div>
+        <a class="btn btn-primary btn-sm" href="#/submit"><i data-lucide="plus"></i> New submission</a>
+      </div>
+
+      ${subs.length ? `
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Resource</th><th>Category</th><th>Status</th><th>Submitted</th></tr></thead>
+          <tbody>
+            ${subs.map(s => `
+              <tr>
+                <td><strong style="color:var(--text)">${esc(s.name)}</strong><br><span style="font-size:12px;color:var(--text-3)">v${esc(s.version || "—")}</span></td>
+                <td>${esc(catName(s.categoryId))}</td>
+                <td>${statusBadge(s.status)}</td>
+                <td>${timeAgo(s.createdAt)}</td>
+              </tr>`).join("")}
+          </tbody>
+        </table>
+      </div>` : emptyState("inbox", "No submissions yet", "Your submitted resources will appear here once you create them.",
+        `<a class="btn btn-primary" href="#/submit">Submit your first resource</a>`)}
+    </div>`
+  };
+};
+
+/* ---------------- FAVORITES / COLLECTIONS / NOTIFICATIONS ---------------- */
+pages.favorites = async () => {
+  if (!state.user) { go("/login"); return { html: "" }; }
+  const list = await api.favorites(state.user.uid);
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Favorites</span></div>
+      <h1>Your favorites</h1>
+      <p>${list.length} saved resource${list.length === 1 ? "" : "s"}.</p>
+    </div></div>
+    <section class="section container">
+      ${list.length ? resourceGrid(list) : emptyState("heart", "Nothing saved yet", "Tap the save button on any resource to keep it here.",
+        `<a class="btn btn-primary" href="#/library">Browse resources</a>`)}
+    </section>`
+  };
+};
+
+pages.collections = async () => {
+  if (!state.user) { go("/login"); return { html: "" }; }
+  const cols = await api.collections(state.user.uid);
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Collections</span></div>
+      <h1>Collections</h1>
+      <p>Group resources into your own curated lists.</p>
+    </div></div>
+    <section class="section container">
+      <button class="btn btn-primary" id="newCollection"><i data-lucide="plus"></i> New collection</button>
+      <div style="margin-top:24px">
+        ${cols.length ? `<div class="rgrid">
+          ${cols.map(c => `<div class="panel" style="margin:0">
+            <h3 style="display:flex;align-items:center;gap:8px"><i data-lucide="folder-heart" style="color:var(--emerald-2);width:17px;height:17px"></i>${esc(c.name)}</h3>
+            <p style="font-size:13px;color:var(--text-3)">${(c.resourceIds || []).length} resources · ${c.isPublic ? "Public" : "Private"}</p>
+          </div>`).join("")}
+        </div>` : emptyState("folder-heart", "No collections yet", "Create a collection to organise resources by theme, modpack or version.")}
+      </div>
+    </section>`,
+    after: () => {
+      $("#newCollection")?.addEventListener("click", () => {
+        openModal(`
+          <div class="modal-head">
+            <div><h2>New collection</h2><p>Give your collection a name.</p></div>
+            <button class="icon-btn" onclick="window.__closeModal()"><i data-lucide="x"></i></button>
+          </div>
+          <form id="colForm">
+            <div class="field"><label>Name <span class="req">*</span></label>
+              <input class="input" name="name" required maxlength="60" placeholder="e.g. Best 1.21 Performance Mods" /></div>
+            <button class="btn btn-primary btn-block" type="submit">Create collection</button>
+          </form>`);
+        refreshIcons();
+        $("#colForm")?.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = new FormData(e.target).get("name");
+          await api.createCollection(state.user.uid, name);
+          closeModal(); toast("Collection created."); render();
+        });
+      });
+    }
+  };
+};
+
+pages.notifications = async () => {
+  if (!state.user) { go("/login"); return { html: "" }; }
+  const list = await api.notifications(state.user.uid);
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>Notifications</span></div>
+      <h1>Notifications</h1>
+      <p>Moderation decisions, resource updates and platform announcements.</p>
+    </div></div>
+    <section class="section container">
+      ${list.length ? `<div class="panel" style="padding:0">
+        ${list.map(n => `
+          <div style="display:flex;gap:13px;padding:17px 20px;border-bottom:1px solid var(--border)">
+            <div style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--emerald-soft);color:var(--emerald-2);flex:none">
+              <i data-lucide="${n.type === "rejected" ? "x-circle" : "check-circle"}"></i>
+            </div>
+            <div style="flex:1;min-width:0">
+              <b style="font-size:13.5px;display:block">${esc(n.title || "Update")}</b>
+              <p style="font-size:13.5px;color:var(--text-2);margin-top:3px">${esc(n.body || "")}</p>
+              <span style="font-size:11.5px;color:var(--text-3)">${timeAgo(n.createdAt)}</span>
+            </div>
+          </div>`).join("")}
+      </div>` : emptyState("bell-off", "No notifications", "You'll be notified here when something important happens.")}
+    </section>`
+  };
+};
+
+/* ---------------- LEGAL ---------------- */
+const LEGAL = {
+  terms: { title: "Terms of Service", body: "<p>By using Minecraft Resource Hub you agree to use the platform lawfully, respect creator licensing, and refrain from uploading malicious or infringing content.</p><p>Resources are provided by third-party creators. We review submissions but cannot guarantee fitness for any particular purpose.</p><p>We may remove content or suspend accounts that violate these terms.</p>" },
+  privacy: { title: "Privacy Policy", body: "<p>We collect the minimum data required to operate the platform: an email address for authentication, a display name, and interaction data such as likes, favorites and downloads.</p><p>We use Firebase (Google) for authentication, database and hosting. Analytics are aggregated and never sold.</p><p>You may request deletion of your account and associated data at any time.</p>" },
+  dmca: { title: "Copyright / DMCA", body: "<p>If you believe content on this platform infringes your copyright, submit a report through the report button on the resource page with proof of ownership.</p><p>Verified claims result in immediate removal of the resource pending resolution.</p>" },
+  guidelines: { title: "Submission Guidelines", body: "<p>Only submit resources you created or are explicitly licensed to distribute.</p><p>Provide accurate version compatibility. Do not claim support for versions you have not tested.</p><p>No malware, obfuscated payloads, or links to untrusted download hosts.</p><p>Include clear installation instructions and a license.</p>" },
+  contact: { title: "Contact", body: "<p>General enquiries: hello@minecraftresourcehub.example</p><p>Moderation and reports: moderation@minecraftresourcehub.example</p><p>Copyright claims: dmca@minecraftresourcehub.example</p>" }
+};
+pages.legal = async ({ parts }) => {
+  const doc = LEGAL[parts[1]] || LEGAL.terms;
+  return {
+    html: `
+    <div class="page-head"><div class="container">
+      <div class="crumbs"><a href="#/">Home</a><i data-lucide="chevron-right"></i><span>${esc(doc.title)}</span></div>
+      <h1>${esc(doc.title)}</h1>
+    </div></div>
+    <section class="section container" style="max-width:820px">
+      <div class="panel prose">${doc.body}</div>
+    </section>`
+  };
+};
+
+pages.notFound = async () => ({
+  html: `<div class="container" style="padding:90px 24px">
+    ${emptyState("compass", "Page not found", "The page you're looking for doesn't exist or has moved.",
+      `<a class="btn btn-primary" href="#/">Back to home</a>`)}
+  </div>`
+});
+
+/* ================================================================
+   8. ROUTER & BOOT
+   ================================================================ */
+function parseHash() {
+  const raw = location.hash.slice(1) || "/";
+  const [pathPart, qs] = raw.split("?");
+  const parts = pathPart.split("/").filter(Boolean);
+  return { parts, query: new URLSearchParams(qs || "") };
+}
+
+async function render() {
+  const { parts, query } = parseHash();
+  const route = parts[0] || "home";
+  const app = $("#app");
+
+  app.innerHTML = `<div class="container" style="padding:60px 24px;display:grid;place-items:center">
+    <div class="spinner" style="width:26px;height:26px;border-width:3px;border-top-color:var(--emerald)"></div>
+  </div>`;
+
+  const page = pages[route] || pages.notFound;
+  let result;
+  try {
+    result = await page({ parts, query });
+  } catch (err) {
+    console.error(err);
+    result = { html: `<div class="container" style="padding:70px 24px">${emptyState("alert-triangle", "Something went wrong", "We couldn't load this page. Please try again.", `<a class="btn btn-primary" href="#/">Back to home</a>`)}</div>` };
+  }
+
+  app.innerHTML = result.html;
+  refreshIcons();
+  result.after?.();
+  window.scrollTo({ top: 0, behavior: "instant" });
+
+  $$("#nav a").forEach(a => a.classList.remove("active"));
+  const navMap = { library: "#/library", creators: "#/creators", submit: "#/submit" };
+  if (navMap[route]) {
+    const el = $(`#nav a[href="${navMap[route]}"]`);
+    if (el) el.classList.add("active");
+  }
+
+  updateNotifDot();
+
+  const titles = {
+    home: "Minecraft Resource Hub — Premium Shaders, Mods, Textures & More",
+    library: "Resource Library — Minecraft Resource Hub",
+    creators: "Creators — Minecraft Resource Hub",
+    dashboard: "Creator Dashboard — Minecraft Resource Hub",
+    submit: "Submit a Resource — Minecraft Resource Hub"
+  };
+  document.title = titles[route] || "Minecraft Resource Hub";
+}
+
+/* ---------- Global UI wiring ---------- */
+function wireGlobalUI() {
+  const overlay = $("#searchOverlay");
+  const input = $("#searchInput");
+  const results = $("#searchResults");
+
+  const openSearch = () => {
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => input.focus(), 40);
+    runSearch("");
+  };
+  const closeSearch = () => {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+    input.value = "";
+  };
+
+  $("#openSearch")?.addEventListener("click", openSearch);
+  overlay.addEventListener("click", e => { if (e.target === overlay) closeSearch(); });
+
+  async function runSearch(q) {
+    const all = await api.resources();
+    const creators = await api.creators();
+    const term = q.trim().toLowerCase();
+
+    let matches = all;
+    if (term) {
+      matches = all.filter(r =>
+        (r.name + " " + (r.creatorName || "") + " " + (r.tags || []).join(" ") + " " + (r.tagline || ""))
+          .toLowerCase().includes(term));
+    }
+    matches = matches.slice(0, 6);
+
+    const creatorMatches = term
+      ? creators.filter(c => (c.name + " " + (c.bio || "")).toLowerCase().includes(term)).slice(0, 3)
+      : [];
+
+    if (!matches.length && !creatorMatches.length) {
+      results.innerHTML = `<div style="padding:36px;text-align:center;color:var(--text-3);font-size:14px">
+        No results for “${esc(q)}”. Try a different term.</div>`;
+      return;
+    }
+
+    results.innerHTML = `
+      ${matches.length ? `<div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);padding:8px 12px;font-weight:700">Resources</div>` : ""}
+      ${matches.map(r => `
+        <a class="search-item" href="#/resource/${esc(r.slug)}">
+          <div class="thumb" style="${coverStyle(r.name)}">${esc(initials(r.name))}</div>
+          <div style="flex:1;min-width:0">
+            <b>${esc(r.name)}</b>
+            <span>${esc(catName(r.categoryId))} · by ${esc(r.creatorName)}</span>
+          </div>
+          <i data-lucide="arrow-up-right" style="color:var(--text-3)"></i>
+        </a>`).join("")}
+      ${creatorMatches.length ? `<div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);padding:14px 12px 8px;font-weight:700">Creators</div>` : ""}
+      ${creatorMatches.map(c => `
+        <a class="search-item" href="#/creator/${esc(c.id)}">
+          <div class="thumb" style="background:linear-gradient(140deg,#34D399,#0E7A46);color:#03150B">${esc(initials(c.name))}</div>
+          <div style="flex:1;min-width:0"><b>${esc(c.name)}</b><span>${esc(c.bio || "")}</span></div>
+        </a>`).join("")}
+      ${q ? `<a class="search-item" href="#/library?q=${encodeURIComponent(q)}" style="color:var(--emerald-2);font-weight:600;justify-content:center;margin-top:8px">
+        View all results for “${esc(q)}” <i data-lucide="arrow-right"></i></a>` : ""}
+    `;
+    refreshIcons();
+
+    $$(".search-item", results).forEach(el => el.addEventListener("click", closeSearch));
+  }
+
+  let searchTimer;
+  input?.addEventListener("input", e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => runSearch(e.target.value), 180);
+  });
+
+  $("#openNotifications")?.addEventListener("click", () => go("/notifications"));
+
+  document.addEventListener("click", () => {
+    $("#userMenu")?.classList.remove("open");
+  });
+  $("#userMenu")?.addEventListener("click", e => e.stopPropagation());
+
+  document.addEventListener("keydown", e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") { e.preventDefault(); openSearch(); }
+    if (e.key === "Escape") { closeSearch(); closeModal(); $("#userMenu")?.classList.remove("open"); }
+  });
+
+  window.__closeModal = closeModal;
+  $("#modalRoot")?.addEventListener("click", e => { if (e.target.id === "modalRoot") closeModal(); });
+
+  $("#year").textContent = new Date().getFullYear();
+}
+
+/* ---------- Boot ---------- */
+(async function boot() {
+  await initBackend();
+  state.categories = await api.categories();
+  state.settings = await api.settings();
+
+  if (state.settings?.maintenance) {
+    document.body.innerHTML = `<div class="maintenance">
+      <div>
+        <i data-lucide="wrench"></i>
+        <h1 style="font-size:28px;margin-bottom:12px">Down for maintenance</h1>
+        <p style="color:var(--text-2);max-width:44ch;margin:0 auto">${esc(state.settings.maintenanceMessage || "We're performing scheduled maintenance and will be back shortly.")}</p>
+      </div>
+    </div>`;
+    refreshIcons();
+    return;
+  }
+
+  loadDB();
+  await initAuth();
+  wireGlobalUI();
+  window.addEventListener("hashchange", render);
+  render();
+})();
+</script>
+</body>
+</html>
